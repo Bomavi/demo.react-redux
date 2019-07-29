@@ -1,3 +1,4 @@
+/* npm imports: common */
 import { createLogger } from 'redux-logger';
 
 const reduxLogger = createLogger({
