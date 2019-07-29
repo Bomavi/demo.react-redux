@@ -21,6 +21,10 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^1.0.5",
+    "reselect": "^4.0.0",
     "serializr": "^1.5.1"
   },
   "devDependencies": {
@@ -32,6 +36,10 @@
     "@types/react-dom": "16.8.4",
     "@types/react-redux": "^7.1.1",
     "@types/react-router-dom": "^4.3.4",
+    "@types/redux": "^3.6.0",
+    "@types/redux-logger": "^3.0.7",
+    "@types/redux-saga": "^0.10.5",
+    "@types/reselect": "^2.2.0",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
     "@typescript-eslint/parser": "^1.11.0",
     "eslint-config-prettier": "^6.0.0",
