@@ -16,7 +16,8 @@
 		"noEmit": true,
 		"noImplicitThis": false,
 		"jsx": "preserve",
-		"baseUrl": "src"
+		"baseUrl": "src",
+		"typeRoots": ["node_modules", "typings"]
 	},
-	"include": ["src"]
+	"include": ["src", "typings"]
 }
