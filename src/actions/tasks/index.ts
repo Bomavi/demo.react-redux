@@ -1,7 +1,7 @@
 // Instruments
 import types from './types';
 
-export default Object.freeze({
+export const actions = Object.freeze({
 	// SEARCH
 	searchTasks: (search: string) => ({
 		type: types.SEARCH_TASKS,
