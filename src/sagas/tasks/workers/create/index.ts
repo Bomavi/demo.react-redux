@@ -5,18 +5,18 @@ import { call, put } from 'redux-saga/effects';
 import * as actions from 'actions/tasks';
 import { services } from 'config/services';
 
-export function* fetchWorker({ payload }: TAction<TasksSearchType>) {
+export function* createWorker({ payload }: TAction<TaskUpdateSchema>) {
 	// yield put(uiActions.startTasksFetching());
 
 	try {
 		if (!payload) throw new Error('no payload found');
 
-		const response = yield call(services.api.tasks.search, payload);
-		const tasks = yield call(response);
+		const response = yield call(services.api.tasks.create, payload);
+		const task = yield call(response);
 
-		yield put(actions.fetchTasksOnSuccess(tasks));
+		yield put(actions.createTaskOnSuccess(task));
 	} catch (e) {
-		yield put(actions.fetchTasksOnFail(e.message));
+		yield put(actions.createTaskOnFail(e.message));
 	} finally {
 		// yield put(uiActions.stopTasksFetching());
 	}
