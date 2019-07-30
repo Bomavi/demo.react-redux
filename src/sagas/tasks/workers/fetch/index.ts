@@ -1,23 +1,27 @@
 /* npm imports: common */
-import { call, put } from 'redux-saga/effects';
+import { call, select, put } from 'redux-saga/effects';
 
 /* root imports: common */
-import * as actions from 'actions/tasks';
 import { services } from 'config/services';
+import { State } from 'reducers';
+import {
+	setIsFetching,
+	fetchTasksOnSuccess,
+	fetchTasksOnFail,
+} from 'actions/tasks';
 
-export function* fetchWorker({ payload }: TAction<TasksSearchType>) {
-	// yield put(uiActions.startTasksFetching());
+export function* fetchWorker() {
+	yield put(setIsFetching(true));
 
 	try {
-		if (!payload) throw new Error('no payload found');
+		const getSearchParams = (state: State) => state.tasks.search;
+		const searchParams = yield select(getSearchParams);
+		const tasks = yield call(services.api.tasks.search, searchParams);
 
-		const response = yield call(services.api.tasks.search, payload);
-		const tasks = yield call(response);
-
-		yield put(actions.fetchTasksOnSuccess(tasks));
+		yield put(fetchTasksOnSuccess(tasks));
 	} catch (e) {
-		yield put(actions.fetchTasksOnFail(e.message));
+		yield put(fetchTasksOnFail(e.message));
 	} finally {
-		// yield put(uiActions.stopTasksFetching());
+		yield put(setIsFetching(false));
 	}
 }

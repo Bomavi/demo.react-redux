@@ -2,31 +2,24 @@
 import { call, put } from 'redux-saga/effects';
 
 /* root imports: common */
-import * as actions from 'actions/tasks';
 import { services } from 'config/services';
+import {
+	setUpdateInProgress,
+	UpdateTaskAction,
+	updateTaskOnSuccess,
+	updateTaskOnFail,
+} from 'actions/tasks';
 
-interface UpdateWorkerProps {
-	id: string;
-	data: TaskUpdateSchema;
-}
-
-export function* updateWorker({ payload }: TAction<UpdateWorkerProps>) {
-	// yield put(uiActions.startTasksFetching());
+export function* updateWorker({ payload: { id, data } }: UpdateTaskAction) {
+	yield put(setUpdateInProgress(id, true));
 
 	try {
-		if (!payload) throw new Error('no payload found');
+		const task = yield call(services.api.tasks.update, id, data);
 
-		const response = yield call(
-			services.api.tasks.update,
-			payload.id,
-			payload.data
-		);
-		const task = yield call(response);
-
-		yield put(actions.updateTaskOnSuccess(task));
+		yield put(updateTaskOnSuccess(task));
 	} catch (e) {
-		yield put(actions.updateTaskOnFail(e.message));
+		yield put(updateTaskOnFail(e.message));
 	} finally {
-		// yield put(uiActions.stopTasksFetching());
+		yield put(setUpdateInProgress(id, false));
 	}
 }

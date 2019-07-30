@@ -2,22 +2,24 @@
 import { call, put } from 'redux-saga/effects';
 
 /* root imports: common */
-import * as actions from 'actions/tasks';
 import { services } from 'config/services';
+import {
+	setDeleteInProgress,
+	DeleteTaskAction,
+	deleteTaskOnSuccess,
+	deleteTaskOnFail,
+} from 'actions/tasks';
 
-export function* deleteWorker({ payload: id }: TAction<string>) {
-	// yield put(uiActions.startTasksFetching());
+export function* deleteWorker({ payload: id }: DeleteTaskAction) {
+	yield put(setDeleteInProgress(id, true));
 
 	try {
-		if (!id) throw new Error('no id found');
+		const task = yield call(services.api.tasks.delete, id);
 
-		const response = yield call(services.api.tasks.delete, id);
-		const task = yield call(response);
-
-		yield put(actions.deleteTaskOnSuccess(task));
+		yield put(deleteTaskOnSuccess(task));
 	} catch (e) {
-		yield put(actions.deleteTaskOnFail(e.message));
+		yield put(deleteTaskOnFail(e.message));
 	} finally {
-		// yield put(uiActions.stopTasksFetching());
+		yield put(setDeleteInProgress(id, false));
 	}
 }
