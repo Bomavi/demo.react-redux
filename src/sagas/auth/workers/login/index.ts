@@ -2,22 +2,24 @@
 import { call, put } from 'redux-saga/effects';
 
 /* root imports: common */
-import * as actions from 'actions/auth';
 import { services } from 'config/services';
+import {
+	setInProgress,
+	LoginAction,
+	loginOnSuccess,
+	loginOnFail,
+} from 'actions/auth';
 
-export function* loginWorker({ payload }: TAction<LoginType>) {
-	// yield put(uiActions.startTasksFetching());
+export function* loginWorker({ payload }: LoginAction) {
+	yield put(setInProgress(true));
 
 	try {
-		if (!payload) throw new Error('no payload found');
+		const user = yield call(services.auth.login, payload);
 
-		const response = yield call(services.auth.login, payload);
-		const user = yield call(response);
-
-		yield put(actions.loginOnSuccess(user));
+		yield put(loginOnSuccess(user));
 	} catch (e) {
-		yield put(actions.loginOnFail(e.message));
+		yield put(loginOnFail(e.message));
 	} finally {
-		// yield put(uiActions.stopTasksFetching());
+		yield put(setInProgress(false));
 	}
 }

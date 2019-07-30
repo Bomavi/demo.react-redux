@@ -2,20 +2,21 @@
 import { call, put } from 'redux-saga/effects';
 
 /* root imports: common */
-import * as actions from 'actions/auth';
 import { services } from 'config/services';
+import {
+	authenticateOnSuccess,
+	authenticateOnFail,
+	setIsInitialized,
+} from 'actions/auth';
 
 export function* authenticateWorker() {
-	// yield put(uiActions.startTasksFetching());
-
 	try {
-		const response = yield call(services.auth.authenticate);
-		const user = yield call(response);
+		const user = yield call(services.auth.authenticate);
 
-		yield put(actions.authenticateOnSuccess(user));
+		yield put(authenticateOnSuccess(user));
 	} catch (e) {
-		yield put(actions.authenticateOnFail(e.message));
+		yield put(authenticateOnFail(e.message));
 	} finally {
-		// yield put(uiActions.stopTasksFetching());
+		yield put(setIsInitialized(true));
 	}
 }

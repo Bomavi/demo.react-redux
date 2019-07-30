@@ -2,20 +2,19 @@
 import { call, put } from 'redux-saga/effects';
 
 /* root imports: common */
-import * as actions from 'actions/auth';
 import { services } from 'config/services';
+import { setInProgress, logoutOnSuccess, logoutOnFail } from 'actions/auth';
 
 export function* logoutWorker() {
-	// yield put(uiActions.startTasksFetching());
+	yield put(setInProgress(true));
 
 	try {
-		const response = yield call(services.auth.logout);
-		const id = yield call(response);
+		const id = yield call(services.auth.logout);
 
-		yield put(actions.logoutOnSuccess(id));
+		yield put(logoutOnSuccess(id));
 	} catch (e) {
-		yield put(actions.logoutOnFail(e.message));
+		yield put(logoutOnFail(e.message));
 	} finally {
-		// yield put(uiActions.stopTasksFetching());
+		yield put(setInProgress(false));
 	}
 }
