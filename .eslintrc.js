@@ -35,6 +35,17 @@ module.exports = {
 		],
 		// jsx-a11y
 		'jsx-a11y/no-autofocus': 0,
+		// prettier
+		'prettier/prettier': [
+			'error',
+			{
+				useTabs: true,
+				tabWidth: 4,
+				semi: true,
+				singleQuote: true,
+				printWidth: 80,
+			},
+		],
 	},
 	settings: {
 		react: {
