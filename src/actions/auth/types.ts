@@ -1,17 +1,52 @@
-export default Object.freeze({
-	AUTHENTICATE: 'AUTHENTICATE',
-	AUTHENTICATE_ONSUCCESS: 'AUTHENTICATE_ONSUCCESS',
-	AUTHENTICATE_ONFAIL: 'AUTHENTICATE_ONFAIL',
+/* local imports: common */
+import {
+	SetIsInitializedAction,
+	SetInProgressAction,
+	AuthenticateAction,
+	AuthenticateOnSuccessAction,
+	AuthenticateOnFailAction,
+	LoginAction,
+	LoginOnSuccessAction,
+	LoginOnFailAction,
+	LogoutAction,
+	LogoutOnSuccessAction,
+	LogoutOnFailAction,
+	RegisterAction,
+	RegisterOnSuccessAction,
+	RegisterOnFailAction,
+} from './index';
 
-	LOGIN: 'LOGIN',
-	LOGIN_ONSUCCESS: 'LOGIN_ONSUCCESS',
-	LOGIN_ONFAIL: 'LOGIN_ONFAIL',
+export type AuthActionTypes =
+	| SetIsInitializedAction
+	| SetInProgressAction
+	| AuthenticateAction
+	| AuthenticateOnSuccessAction
+	| AuthenticateOnFailAction
+	| LoginAction
+	| LoginOnSuccessAction
+	| LoginOnFailAction
+	| LogoutAction
+	| LogoutOnSuccessAction
+	| LogoutOnFailAction
+	| RegisterAction
+	| RegisterOnSuccessAction
+	| RegisterOnFailAction;
 
-	REGISTER: 'REGISTER',
-	REGISTER_ONSUCCESS: 'REGISTER_ONSUCCESS',
-	REGISTER_ONFAIL: 'REGISTER_ONFAIL',
+export const SET_INPROGRESS = 'SET_INPROGRESS';
+export const SET_ISINITIALIZED = 'SET_ISINITIALIZED';
 
-	LOGOUT: 'LOGOUT',
-	LOGOUT_ONSUCCESS: 'LOGOUT_ONSUCCESS',
-	LOGOUT_ONFAIL: 'LOGOUT_ONFAIL',
-});
+export const AUTHENTICATE = 'AUTHENTICATE';
+export const AUTHENTICATE_ONSUCCESS = 'AUTHENTICATE_ONSUCCESS';
+export const AUTHENTICATE_ONFAIL = 'AUTHENTICATE_ONFAIL';
+
+export const LOGIN = 'LOGIN';
+export const LOGIN_ONSUCCESS = 'LOGIN_ONSUCCESS';
+export const LOGIN_ONFAIL = 'LOGIN_ONFAIL';
+
+export const REGISTER = 'REGISTER';
+export const REGISTER_ONSUCCESS = 'REGISTER_ONSUCCESS';
+export const REGISTER_ONFAIL = 'REGISTER_ONFAIL';
+
+export const LOGOUT = 'LOGOUT';
+export const LOGOUT_ONSUCCESS = 'LOGOUT_ONSUCCESS';
+export const LOGOUT_ONFAIL = 'LOGOUT_ONFAIL';
