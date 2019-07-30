@@ -16,7 +16,7 @@
 		"noEmit": true,
 		"noImplicitThis": false,
 		"jsx": "preserve",
-		"baseUrl": "src",
+		"baseUrl": "src"
 	},
 	"include": ["src", "typings"]
 }
