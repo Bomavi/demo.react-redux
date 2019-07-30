@@ -1,7 +1,7 @@
 declare type TasksSearchKeys = 'q';
 
 declare interface TasksSearchType {
-	q?: TasksSearchKeys;
+	q?: string;
 	// ? pagination options
 	size?: number;
 	page?: number;
@@ -17,6 +17,8 @@ declare interface TaskType {
 	completed: boolean;
 	createdAt: string;
 	updatedAt: string;
+	updateInProgress?: boolean;
+	deleteInProgress?: boolean;
 }
 
 declare interface TaskUpdateSchema {
