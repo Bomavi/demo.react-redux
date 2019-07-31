@@ -4,6 +4,7 @@ import { all } from 'redux-saga/effects';
 /* local imports: common */
 import auth from './auth';
 import tasks from './tasks';
+import theme from './theme';
 
 export function* saga() {
 	yield all([
@@ -16,5 +17,7 @@ export function* saga() {
 		tasks.createWatcher(),
 		tasks.updateWatcher(),
 		tasks.deleteWatcher(),
+
+		theme.switchWatcher(),
 	]);
 }
