@@ -4,11 +4,7 @@ import { call, select, put } from 'redux-saga/effects';
 /* root imports: common */
 import { services } from 'config/services';
 import { State } from 'reducers';
-import {
-	setIsFetching,
-	fetchTasksOnSuccess,
-	fetchTasksOnFail,
-} from 'actions/tasks';
+import { setIsFetching, fetchTasksOnSuccess, fetchTasksOnFail } from 'actions/tasks';
 
 export function* fetchWorker() {
 	yield put(setIsFetching(true));
