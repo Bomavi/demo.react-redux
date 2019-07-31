@@ -4,12 +4,12 @@ import { Reducer } from 'redux';
 /* root imports: common */
 import * as types from 'actions/tasks/types';
 
-export interface TasksState {
-	taskList: readonly TaskType[];
+export type TasksState = Readonly<{
+	taskList: TaskType[];
 	search: TasksSearchType;
 	isFetching: boolean;
 	inProgress: boolean;
-}
+}>;
 
 const initialState: TasksState = {
 	taskList: [],
@@ -86,9 +86,7 @@ const tasks: Reducer<TasksState, types.TaskActionTypes> = (
 			const task = action.payload;
 			return {
 				...state,
-				taskList: state.taskList.map(t =>
-					t._id === task._id ? task : t
-				),
+				taskList: state.taskList.map(t => (t._id === task._id ? task : t)),
 			};
 		}
 
