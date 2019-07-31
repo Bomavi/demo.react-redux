@@ -21,7 +21,12 @@ export class ApiClient {
 		}) as Promise<E>;
 	}
 
-	public put<E = {}>(url: string, body: {} = {}, params?: {}, options?: {}): Promise<E> {
+	public put<E = {}>(
+		url: string,
+		body: {} = {},
+		params?: {},
+		options?: {}
+	): Promise<E> {
 		return this.request({
 			url,
 			body,
@@ -31,7 +36,12 @@ export class ApiClient {
 		}) as Promise<E>;
 	}
 
-	public patch<E = {}>(url: string, body: {} = {}, params?: {}, options?: {}): Promise<E> {
+	public patch<E = {}>(
+		url: string,
+		body: {} = {},
+		params?: {},
+		options?: {}
+	): Promise<E> {
 		return this.request({
 			url,
 			body,
@@ -41,7 +51,12 @@ export class ApiClient {
 		}) as Promise<E>;
 	}
 
-	public post<E = {}>(url: string, body: {} = {}, params?: {}, options?: {}): Promise<E> {
+	public post<E = {}>(
+		url: string,
+		body: {} = {},
+		params?: {},
+		options?: {}
+	): Promise<E> {
 		return this.request({
 			url,
 			body,
