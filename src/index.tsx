@@ -1,20 +1,18 @@
 /* npm imports: common */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
 /* root imports: view components */
-// import { App } from 'components/layouts/App';
+import { App } from 'views/layouts/App';
 
 /* root imports: common */
-//
+import { store } from 'store';
 
 /* start react app */
 ReactDOM.render(
-	// <RouterProvider router={router}>
-	// 	<Provider routerStore={routerStore} globalStore={globalStore} authStore={authStore}>
-	// 		<App />
-	// 	</Provider>
-	// </RouterProvider>,
-	<div>Hello World</div>,
+	<Provider store={store}>
+		<App />
+	</Provider>,
 	document.getElementById('root') as HTMLElement
 );
