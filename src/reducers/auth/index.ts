@@ -18,17 +18,25 @@ const types = {
 
 type ActionTypes = AuthActionTypes | UserActionTypes | ThemeActionTypes;
 
-export interface AuthState {
-	user: UserType | null;
+export type ThemeType = Readonly<{
 	selectedThemeType: MUIThemeType;
+	inProgress: boolean;
+}>;
+
+export type AuthState = Readonly<{
+	user: UserType | null;
+	theme: ThemeType;
 	isInitialized: boolean;
 	inProgress: boolean;
-}
+}>;
 
 export const initialState: AuthState = {
 	user: null,
-	selectedThemeType: 'light',
 	isInitialized: false,
+	theme: {
+		selectedThemeType: 'light',
+		inProgress: false,
+	},
 	inProgress: false,
 };
 
@@ -37,41 +45,49 @@ export const auth: Reducer<AuthState, ActionTypes> = (
 	action
 ): AuthState => {
 	switch (action.type) {
-		case types.SET_INPROGRESS: {
+		case types.SET_IN_PROGRESS: {
 			return {
 				...state,
 				inProgress: action.payload,
 			};
 		}
 
-		case types.SET_ISINITIALIZED: {
+		case types.SET_IS_INITIALIZED: {
 			const localThemeType = localStorage.getItem('theme');
 			let selectedThemeType: MUIThemeType;
 
 			if (localThemeType && themeValidator(localThemeType)) {
 				selectedThemeType = localThemeType as MUIThemeType;
 			} else {
-				selectedThemeType = state.selectedThemeType;
-				localStorage.setItem('theme', state.selectedThemeType);
+				selectedThemeType = state.theme.selectedThemeType;
+				localStorage.setItem('theme', state.theme.selectedThemeType);
 			}
 
 			return {
 				...state,
-				selectedThemeType,
+				theme: {
+					...state.theme,
+					selectedThemeType,
+				},
 				isInitialized: action.payload,
 			};
 		}
 
 		case types.AUTHENTICATE_ONSUCCESS:
 		case types.LOGIN_ONSUCCESS:
-		case types.REGISTER_ONSUCCESS: {
+		case types.REGISTER_ONSUCCESS:
+		case types.UPDATE_USER_ONSUCCESS: {
+			localStorage.setItem('theme', action.payload.theme);
 			return {
 				...state,
 				user: {
 					...state.user,
 					...action.payload,
 				},
-				selectedThemeType: action.payload.theme,
+				theme: {
+					...state.theme,
+					selectedThemeType: action.payload.theme,
+				},
 			};
 		}
 
@@ -82,22 +98,38 @@ export const auth: Reducer<AuthState, ActionTypes> = (
 			};
 		}
 
-		case types.UPDATE_USER_ONSUCCESS: {
+		// case types.UPDATE_USER_ONSUCCESS: {
+		// 	localStorage.setItem('theme',  action.payload.theme);
+		// 	return {
+		// 		...state,
+		// 		user: {
+		// 			...state.user,
+		// 			...action.payload,
+		// 		},
+		// 		theme: {
+		// 			...state.theme,
+		// 			selectedThemeType: action.payload.theme,
+		// 		},
+		// 	};
+		// }
+
+		case types.SET_THEME_IN_PROGRESS: {
 			return {
 				...state,
-				user: {
-					...state.user,
-					...action.payload,
+				theme: {
+					...state.theme,
+					inProgress: action.payload,
 				},
-				selectedThemeType: action.payload.theme,
 			};
 		}
 
-		case types.SWITCH_THEME_ONSUCCESS:
 		case types.CHANGE_SELECTED_THEME_TYPE: {
 			return {
 				...state,
-				selectedThemeType: action.payload,
+				theme: {
+					...state.theme,
+					selectedThemeType: action.payload,
+				},
 			};
 		}
 
