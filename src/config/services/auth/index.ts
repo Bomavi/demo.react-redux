@@ -2,19 +2,19 @@
 import { Base } from 'config/axios/base';
 
 export class AuthService extends Base {
-	public async authenticate() {
-		return await this.apiClient.post<AuthenticateResponseType>('/authenticate');
-	}
+	public authenticate = async () => {
+		return await this.apiClient.post<UserType>('/authenticate');
+	};
 
-	public async login(params: Partial<LoginType>) {
-		return await this.apiClient.post<LoginResponseType>('/login', params);
-	}
+	public login = async (params: Partial<LoginType>) => {
+		return await this.apiClient.post<UserType>('/login', params);
+	};
 
-	public async register(params: Partial<RegisterType>) {
-		return await this.apiClient.post<RegisterResponseType>('/register', params);
-	}
+	public register = async (params: Partial<RegisterType>) => {
+		return await this.apiClient.post<UserType>('/register', params);
+	};
 
-	public async logout() {
+	public logout = async () => {
 		return await this.apiClient.post<{}>('/logout');
-	}
+	};
 }
