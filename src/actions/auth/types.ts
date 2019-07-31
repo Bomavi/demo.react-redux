@@ -32,8 +32,8 @@ export type AuthActionTypes =
 	| RegisterOnSuccessAction
 	| RegisterOnFailAction;
 
-export const SET_INPROGRESS = 'SET_INPROGRESS';
-export const SET_ISINITIALIZED = 'SET_ISINITIALIZED';
+export const SET_IN_PROGRESS = 'SET_IN_PROGRESS';
+export const SET_IS_INITIALIZED = 'SET_IS_INITIALIZED';
 
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const AUTHENTICATE_ONSUCCESS = 'AUTHENTICATE_ONSUCCESS';
