@@ -12,24 +12,24 @@ export const logout = (): LogoutAction => ({
 
 /* on success action */
 export interface LogoutOnSuccessAction {
-	type: typeof types.LOGOUT_ONSUCCESS;
+	type: typeof types.LOGOUT_ON_SUCCESS;
 	payload: string;
 }
 
 export const logoutOnSuccess = (id: string): LogoutOnSuccessAction => ({
-	type: types.LOGOUT_ONSUCCESS,
+	type: types.LOGOUT_ON_SUCCESS,
 	payload: id,
 });
 
 /* on fail action */
 export interface LogoutOnFailAction {
-	type: typeof types.LOGOUT_ONFAIL;
+	type: typeof types.LOGOUT_ON_FAIL;
 	payload: string;
 	error: boolean;
 }
 
 export const logoutOnFail = (error: string): LogoutOnFailAction => ({
-	type: types.LOGOUT_ONFAIL,
+	type: types.LOGOUT_ON_FAIL,
 	payload: error,
 	error: true,
 });

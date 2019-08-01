@@ -73,10 +73,10 @@ export const auth: Reducer<AuthState, ActionTypes> = (
 			};
 		}
 
-		case types.AUTHENTICATE_ONSUCCESS:
-		case types.LOGIN_ONSUCCESS:
-		case types.REGISTER_ONSUCCESS:
-		case types.UPDATE_USER_ONSUCCESS: {
+		case types.AUTHENTICATE_ON_SUCCESS:
+		case types.LOGIN_ON_SUCCESS:
+		case types.REGISTER_ON_SUCCESS:
+		case types.UPDATE_USER_ON_SUCCESS: {
 			localStorage.setItem('theme', action.payload.theme);
 			return {
 				...state,
@@ -91,14 +91,14 @@ export const auth: Reducer<AuthState, ActionTypes> = (
 			};
 		}
 
-		case types.LOGOUT_ONSUCCESS: {
+		case types.LOGOUT_ON_SUCCESS: {
 			return {
 				...state,
 				user: null,
 			};
 		}
 
-		// case types.UPDATE_USER_ONSUCCESS: {
+		// case types.UPDATE_USER_ON_SUCCESS: {
 		// 	localStorage.setItem('theme',  action.payload.theme);
 		// 	return {
 		// 		...state,

@@ -14,24 +14,24 @@ export const deleteTask = (id: string): DeleteTaskAction => ({
 
 /* on success action */
 export interface DeleteTaskOnSuccessAction {
-	type: typeof types.DELETE_TASK_ONSUCCESS;
+	type: typeof types.DELETE_TASK_ON_SUCCESS;
 	payload: string;
 }
 
 export const deleteTaskOnSuccess = (id: string): DeleteTaskOnSuccessAction => ({
-	type: types.DELETE_TASK_ONSUCCESS,
+	type: types.DELETE_TASK_ON_SUCCESS,
 	payload: id,
 });
 
 /* on fail action */
 export interface DeleteTaskOnFailAction {
-	type: typeof types.DELETE_TASK_ONFAIL;
+	type: typeof types.DELETE_TASK_ON_FAIL;
 	payload: string;
 	error: boolean;
 }
 
 export const deleteTaskOnFail = (error: string): DeleteTaskOnFailAction => ({
-	type: types.DELETE_TASK_ONFAIL,
+	type: types.DELETE_TASK_ON_FAIL,
 	payload: error,
 	error: true,
 });

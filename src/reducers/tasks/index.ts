@@ -34,21 +34,21 @@ const tasks: Reducer<TasksState, types.TaskActionTypes> = (
 			};
 		}
 
-		case types.SET_ISFETCHING: {
+		case types.SET_IS_FETCHING: {
 			return {
 				...state,
 				isFetching: action.payload,
 			};
 		}
 
-		case types.SET_INPROGRESS: {
+		case types.SET_IN_PROGRESS: {
 			return {
 				...state,
 				inProgress: action.payload,
 			};
 		}
 
-		case types.SET_UPDATE_INPROGRESS: {
+		case types.SET_UPDATE_IN_PROGRESS: {
 			const { id, inProgress } = action.payload;
 			return {
 				...state,
@@ -58,7 +58,7 @@ const tasks: Reducer<TasksState, types.TaskActionTypes> = (
 			};
 		}
 
-		case types.SET_DELETE_INPROGRESS: {
+		case types.SET_DELETE_IN_PROGRESS: {
 			const { id, inProgress } = action.payload;
 			return {
 				...state,
@@ -68,21 +68,21 @@ const tasks: Reducer<TasksState, types.TaskActionTypes> = (
 			};
 		}
 
-		case types.FETCH_TASKS_ONSUCCESS: {
+		case types.FETCH_TASKS_ON_SUCCESS: {
 			return {
 				...state,
 				taskList: action.payload,
 			};
 		}
 
-		case types.CREATE_TASK_ONSUCCESS: {
+		case types.CREATE_TASK_ON_SUCCESS: {
 			return {
 				...state,
 				taskList: [action.payload, ...state.taskList],
 			};
 		}
 
-		case types.UPDATE_TASK_ONSUCCESS: {
+		case types.UPDATE_TASK_ON_SUCCESS: {
 			const task = action.payload;
 			return {
 				...state,
@@ -90,7 +90,7 @@ const tasks: Reducer<TasksState, types.TaskActionTypes> = (
 			};
 		}
 
-		case types.DELETE_TASK_ONSUCCESS: {
+		case types.DELETE_TASK_ON_SUCCESS: {
 			const id = action.payload;
 			return {
 				...state,

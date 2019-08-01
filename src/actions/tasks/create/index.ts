@@ -14,26 +14,24 @@ export const createTask = (task: TaskUpdateSchema): CreateTaskAction => ({
 
 /* on success action */
 export interface CreateTaskOnSuccessAction {
-	type: typeof types.CREATE_TASK_ONSUCCESS;
+	type: typeof types.CREATE_TASK_ON_SUCCESS;
 	payload: TaskType;
 }
 
-export const createTaskOnSuccess = (
-	task: TaskType
-): CreateTaskOnSuccessAction => ({
-	type: types.CREATE_TASK_ONSUCCESS,
+export const createTaskOnSuccess = (task: TaskType): CreateTaskOnSuccessAction => ({
+	type: types.CREATE_TASK_ON_SUCCESS,
 	payload: task,
 });
 
 /* on fail action */
 export interface CreateTaskOnFailAction {
-	type: typeof types.CREATE_TASK_ONFAIL;
+	type: typeof types.CREATE_TASK_ON_FAIL;
 	payload: string;
 	error: boolean;
 }
 
 export const createTaskOnFail = (error: string): CreateTaskOnFailAction => ({
-	type: types.CREATE_TASK_ONFAIL,
+	type: types.CREATE_TASK_ON_FAIL,
 	payload: error,
 	error: true,
 });

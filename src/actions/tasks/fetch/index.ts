@@ -12,26 +12,24 @@ export const fetchTasks = (): FetchTasksAction => ({
 
 /* on success action */
 export interface FetchTasksOnSuccessAction {
-	type: typeof types.FETCH_TASKS_ONSUCCESS;
+	type: typeof types.FETCH_TASKS_ON_SUCCESS;
 	payload: TaskType[];
 }
 
-export const fetchTasksOnSuccess = (
-	tasks: TaskType[]
-): FetchTasksOnSuccessAction => ({
-	type: types.FETCH_TASKS_ONSUCCESS,
+export const fetchTasksOnSuccess = (tasks: TaskType[]): FetchTasksOnSuccessAction => ({
+	type: types.FETCH_TASKS_ON_SUCCESS,
 	payload: tasks,
 });
 
 /* on fail action */
 export interface FetchTasksOnFailAction {
-	type: typeof types.FETCH_TASKS_ONFAIL;
+	type: typeof types.FETCH_TASKS_ON_FAIL;
 	payload: string;
 	error: boolean;
 }
 
 export const fetchTasksOnFail = (error: string): FetchTasksOnFailAction => ({
-	type: types.FETCH_TASKS_ONFAIL,
+	type: types.FETCH_TASKS_ON_FAIL,
 	payload: error,
 	error: true,
 });

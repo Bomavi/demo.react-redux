@@ -10,10 +10,7 @@ export interface UpdateTaskAction {
 	};
 }
 
-export const updateTask = (
-	id: string,
-	data: TaskUpdateSchema
-): UpdateTaskAction => ({
+export const updateTask = (id: string, data: TaskUpdateSchema): UpdateTaskAction => ({
 	type: types.UPDATE_TASK,
 	payload: {
 		id,
@@ -23,26 +20,24 @@ export const updateTask = (
 
 /* on success action */
 export interface UpdateTaskOnSuccessAction {
-	type: typeof types.UPDATE_TASK_ONSUCCESS;
+	type: typeof types.UPDATE_TASK_ON_SUCCESS;
 	payload: TaskType;
 }
 
-export const updateTaskOnSuccess = (
-	task: TaskType
-): UpdateTaskOnSuccessAction => ({
-	type: types.UPDATE_TASK_ONSUCCESS,
+export const updateTaskOnSuccess = (task: TaskType): UpdateTaskOnSuccessAction => ({
+	type: types.UPDATE_TASK_ON_SUCCESS,
 	payload: task,
 });
 
 /* on fail action */
 export interface UpdateTaskOnFailAction {
-	type: typeof types.UPDATE_TASK_ONFAIL;
+	type: typeof types.UPDATE_TASK_ON_FAIL;
 	payload: string;
 	error: boolean;
 }
 
 export const updateTaskOnFail = (error: string): UpdateTaskOnFailAction => ({
-	type: types.UPDATE_TASK_ONFAIL,
+	type: types.UPDATE_TASK_ON_FAIL,
 	payload: error,
 	error: true,
 });

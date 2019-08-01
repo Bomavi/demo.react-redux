@@ -14,26 +14,24 @@ export const updateUser = (user: UserUpdateSchema): UpdateUserAction => ({
 
 /* on success action */
 export interface UpdateUserOnSuccessAction {
-	type: typeof types.UPDATE_USER_ONSUCCESS;
+	type: typeof types.UPDATE_USER_ON_SUCCESS;
 	payload: UserType;
 }
 
-export const updateUserOnSuccess = (
-	user: UserType
-): UpdateUserOnSuccessAction => ({
-	type: types.UPDATE_USER_ONSUCCESS,
+export const updateUserOnSuccess = (user: UserType): UpdateUserOnSuccessAction => ({
+	type: types.UPDATE_USER_ON_SUCCESS,
 	payload: user,
 });
 
 /* on fail action */
 export interface UpdateUserOnFailAction {
-	type: typeof types.UPDATE_USER_ONFAIL;
+	type: typeof types.UPDATE_USER_ON_FAIL;
 	payload: string;
 	error: boolean;
 }
 
 export const updateUserOnFail = (error: string): UpdateUserOnFailAction => ({
-	type: types.UPDATE_USER_ONFAIL,
+	type: types.UPDATE_USER_ON_FAIL,
 	payload: error,
 	error: true,
 });

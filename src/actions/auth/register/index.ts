@@ -14,24 +14,24 @@ export const register = (userData: RegisterType): RegisterAction => ({
 
 /* on success action */
 export interface RegisterOnSuccessAction {
-	type: typeof types.REGISTER_ONSUCCESS;
+	type: typeof types.REGISTER_ON_SUCCESS;
 	payload: UserType;
 }
 
 export const registerOnSuccess = (user: UserType): RegisterOnSuccessAction => ({
-	type: types.REGISTER_ONSUCCESS,
+	type: types.REGISTER_ON_SUCCESS,
 	payload: user,
 });
 
 /* on fail action */
 export interface RegisterOnFailAction {
-	type: typeof types.REGISTER_ONFAIL;
+	type: typeof types.REGISTER_ON_FAIL;
 	payload: string;
 	error: boolean;
 }
 
 export const registerOnFail = (error: string): RegisterOnFailAction => ({
-	type: types.REGISTER_ONFAIL,
+	type: types.REGISTER_ON_FAIL,
 	payload: error,
 	error: true,
 });

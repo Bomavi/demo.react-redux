@@ -12,28 +12,24 @@ export const authenticate = (): AuthenticateAction => ({
 
 /* on success action */
 export interface AuthenticateOnSuccessAction {
-	type: typeof types.AUTHENTICATE_ONSUCCESS;
+	type: typeof types.AUTHENTICATE_ON_SUCCESS;
 	payload: UserType;
 }
 
-export const authenticateOnSuccess = (
-	user: UserType
-): AuthenticateOnSuccessAction => ({
-	type: types.AUTHENTICATE_ONSUCCESS,
+export const authenticateOnSuccess = (user: UserType): AuthenticateOnSuccessAction => ({
+	type: types.AUTHENTICATE_ON_SUCCESS,
 	payload: user,
 });
 
 /* on fail action */
 export interface AuthenticateOnFailAction {
-	type: typeof types.AUTHENTICATE_ONFAIL;
+	type: typeof types.AUTHENTICATE_ON_FAIL;
 	payload: string;
 	error: boolean;
 }
 
-export const authenticateOnFail = (
-	error: string
-): AuthenticateOnFailAction => ({
-	type: types.AUTHENTICATE_ONFAIL,
+export const authenticateOnFail = (error: string): AuthenticateOnFailAction => ({
+	type: types.AUTHENTICATE_ON_FAIL,
 	payload: error,
 	error: true,
 });
