@@ -78,7 +78,7 @@ const tasks: Reducer<TasksState, types.TaskActionTypes> = (
 		case types.CREATE_TASK_ON_SUCCESS: {
 			return {
 				...state,
-				taskList: [action.payload, ...state.taskList],
+				taskList: [...state.taskList, action.payload],
 			};
 		}
 
