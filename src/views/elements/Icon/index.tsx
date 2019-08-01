@@ -29,7 +29,9 @@ export type IconName =
 	| 'eye-off-outline'
 	| 'eye-outline'
 	| 'help'
-	| 'help-rhombus-outline';
+	| 'help-rhombus-outline'
+	| 'sort-ascending'
+	| 'sort-descending';
 
 export interface IconProps extends IconParams {
 	name: IconName;
