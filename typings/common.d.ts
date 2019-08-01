@@ -15,3 +15,5 @@ declare interface CustomServerError extends Error {
 }
 
 declare type Sizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+
+declare type SortKey = 'asc' | 'desc';
