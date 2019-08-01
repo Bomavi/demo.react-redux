@@ -3,10 +3,11 @@ import { call, put } from 'redux-saga/effects';
 
 /* root imports: common */
 import { services } from 'config/services';
+import { history } from 'config/history';
 import {
 	setInProgress,
 	LoginAction,
-	loginOnSuccess,
+	registerOnSuccess,
 	registerOnFail,
 } from 'actions/auth';
 
@@ -16,7 +17,8 @@ export function* registerWorker({ payload }: LoginAction) {
 	try {
 		const user = yield call(services.auth.register, payload);
 
-		yield put(loginOnSuccess(user));
+		yield put(registerOnSuccess(user));
+		yield call(history.push, '/' as any);
 	} catch (e) {
 		yield put(registerOnFail(e.message));
 	} finally {
