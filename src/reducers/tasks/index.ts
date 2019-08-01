@@ -7,6 +7,7 @@ import * as types from 'actions/tasks/types';
 export type TasksState = Readonly<{
 	taskList: TaskType[];
 	search: TasksSearchType;
+	sort: SortKey;
 	isFetching: boolean;
 	inProgress: boolean;
 }>;
@@ -16,6 +17,7 @@ const initialState: TasksState = {
 	search: {
 		q: '',
 	},
+	sort: 'desc',
 	isFetching: false,
 	inProgress: false,
 };
@@ -31,6 +33,13 @@ const tasks: Reducer<TasksState, types.TaskActionTypes> = (
 				search: {
 					q: action.payload,
 				},
+			};
+		}
+
+		case types.SORT_TASKS: {
+			return {
+				...state,
+				sort: action.payload,
 			};
 		}
 
