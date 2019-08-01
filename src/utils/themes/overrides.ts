@@ -38,4 +38,5 @@ export const themeWithOverrides = createMuiTheme({
 		},
 	},
 	gradients: defaultTheme.gradients,
+	sizes: defaultTheme.sizes,
 });

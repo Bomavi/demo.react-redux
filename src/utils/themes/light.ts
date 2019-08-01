@@ -16,6 +16,7 @@ const lightTheme = createMuiTheme({
 		},
 	},
 	gradients: defaultTheme.gradients,
+	sizes: defaultTheme.sizes,
 	overrides: themeWithOverrides.overrides,
 });
 

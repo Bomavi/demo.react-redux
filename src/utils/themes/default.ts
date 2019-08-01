@@ -7,4 +7,7 @@ export const defaultTheme = createMuiTheme({
 		primary: 'linear-gradient(45deg, #26a69a 30%, #66bb6a 90%)',
 		secondary: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
 	},
+	sizes: {
+		footer: 80,
+	},
 });
