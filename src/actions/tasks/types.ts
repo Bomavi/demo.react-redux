@@ -1,6 +1,7 @@
 /* local imports: common */
 import {
 	SearchTasksAction,
+	SortTasksAction,
 	SetIsFetchingAction,
 	SetInProgressAction,
 	SetUpdateInProgressAction,
@@ -21,6 +22,7 @@ import {
 
 export type TaskActionTypes =
 	| SearchTasksAction
+	| SortTasksAction
 	| SetIsFetchingAction
 	| SetInProgressAction
 	| SetUpdateInProgressAction
@@ -39,6 +41,7 @@ export type TaskActionTypes =
 	| DeleteTaskOnFailAction;
 
 export const SEARCH_TASKS = 'SEARCH_TASKS';
+export const SORT_TASKS = 'SORT_TASKS';
 
 export const SET_IS_FETCHING = 'SET_IS_FETCHING';
 export const SET_IN_PROGRESS = 'SET_IN_PROGRESS';
