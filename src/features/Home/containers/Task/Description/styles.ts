@@ -5,6 +5,9 @@ export const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		typography: {
 			flexGrow: 1,
+			flexShrink: 2,
+			// flexBasis: '100%',
+			width: '100%',
 			padding: '0 20px',
 		},
 	})
