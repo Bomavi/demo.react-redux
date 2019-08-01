@@ -20,6 +20,7 @@ const EditInput: React.FC<EditInputProps> = props => {
 				icon={{
 					name: 'check',
 					svgSize: 'md',
+					title: 'Save',
 				}}
 				{...props}
 			/>

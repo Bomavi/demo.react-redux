@@ -36,6 +36,7 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
 			<Checkbox
 				checked={value}
 				color="primary"
+				title={value ? 'Uncomplete' : 'Complete'}
 				disabled={disabled}
 				onChange={onChange}
 			/>

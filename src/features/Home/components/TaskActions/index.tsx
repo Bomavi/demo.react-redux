@@ -46,6 +46,7 @@ const TaskActions: React.FC<TaskActionsProps> = ({
 				<IconButton
 					className={classes.iconButton}
 					disabled={disabled || isFetching}
+					title="Edit"
 					onClick={onEdit}
 				>
 					<Icon name="pencil" size="sm" />
@@ -55,6 +56,7 @@ const TaskActions: React.FC<TaskActionsProps> = ({
 				<IconButton
 					className={classes.iconButton}
 					disabled={disabled || isFetching}
+					title="Delete"
 					onClick={onDelete}
 				>
 					<Icon name="delete" size="sm" />

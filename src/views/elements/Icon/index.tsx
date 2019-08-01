@@ -35,6 +35,7 @@ export type IconName =
 
 export interface IconProps extends IconParams {
 	name: IconName;
+	title?: string;
 }
 
 const Icon: React.FC<IconProps> = ({ name, size = 'sm', svgSize = 'sm', color }) => {

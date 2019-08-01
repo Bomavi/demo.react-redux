@@ -43,14 +43,13 @@ class CustomInputComponent extends React.PureComponent<
 		inputValue: '',
 	};
 
-	private get isEmpty(): boolean {
-		const { inputValue } = this.state;
-		const { defaultValue } = this.props;
-		return !inputValue || inputValue === defaultValue;
-	}
-
 	private get trimedValue(): string {
 		return removeSpaces(this.state.inputValue).trim();
+	}
+
+	private get isEmpty(): boolean {
+		const { defaultValue } = this.props;
+		return !this.trimedValue || this.trimedValue === defaultValue;
 	}
 
 	private changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -120,6 +119,7 @@ class CustomInputComponent extends React.PureComponent<
 						icon={icon}
 						isFetching={isFetching}
 						color={onClick ? 'primary' : 'inherit'}
+						title={icon.title}
 						disabled={onClick && this.isEmpty}
 						onClick={onClick && this.actionClickHandler}
 					/>
@@ -135,9 +135,19 @@ class CustomInputComponent extends React.PureComponent<
 				/>
 				{(!this.isEmpty || onCancel) && <Divider className={classes.divider} />}
 				{!this.isEmpty && !onCancel && (
-					<InputButton icon={{ name: 'close' }} onClick={this.clearHandler} />
+					<InputButton
+						icon={{ name: 'close' }}
+						title="Clear"
+						onClick={this.clearHandler}
+					/>
 				)}
-				{onCancel && <InputButton icon={{ name: 'close' }} onClick={onCancel} />}
+				{onCancel && (
+					<InputButton
+						icon={{ name: 'close' }}
+						title="Cancel"
+						onClick={onCancel}
+					/>
+				)}
 			</div>
 		);
 	}

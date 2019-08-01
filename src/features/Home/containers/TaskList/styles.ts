@@ -17,6 +17,5 @@ export const styles = (theme: Theme) =>
 		title: {
 			flexBasis: '100%',
 			lineHeight: '60px',
-			// marginBottom: 20,
 		},
 	});

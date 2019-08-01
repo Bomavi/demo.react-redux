@@ -18,8 +18,9 @@ export const getSortedByDateTasks: Selector<State, TaskType[]> = createSelector(
 );
 
 export const getSortedTasks: Selector<State, TaskType[]> = createSelector(
-	[getSortedByDateTasks],
-	tasks => tasks.sort((a, b) => Number(a.completed) - Number(b.completed))
+	[getSortedByDateTasks, sortKeySelector],
+	(tasks, sortKey) =>
+		sortKey ? tasks.sort((a, b) => Number(a.completed) - Number(b.completed)) : tasks
 );
 
 export const getTasksLenth: Selector<State, number> = createSelector(

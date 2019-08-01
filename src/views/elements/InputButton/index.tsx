@@ -14,6 +14,7 @@ import { useStyles } from './styles';
 
 export interface InputButtonProps {
 	icon: IconProps;
+	title?: string;
 	svgSize?: Sizes;
 	disabled?: boolean;
 	isFetching?: boolean;
@@ -23,6 +24,7 @@ export interface InputButtonProps {
 
 const InputButton: React.FC<InputButtonProps> = ({
 	icon: { name: iconName, svgSize = 'sm' },
+	title,
 	disabled,
 	isFetching = false,
 	color = 'inherit',
@@ -50,6 +52,7 @@ const InputButton: React.FC<InputButtonProps> = ({
 		<div className={classes.root}>
 			<IconButton
 				className={cx(classes.iconButton, color)}
+				title={title}
 				color={color}
 				disabled={disabled}
 				onClick={onClick}
