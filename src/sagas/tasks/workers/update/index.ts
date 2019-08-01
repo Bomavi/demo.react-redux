@@ -11,9 +11,8 @@ import {
 } from 'actions/tasks';
 
 export function* updateWorker({ payload: { id, data } }: UpdateTaskAction) {
-	yield put(setUpdateInProgress(id, true));
-
 	try {
+		yield put(setUpdateInProgress(id, true));
 		const task = yield call(services.api.tasks.update, id, data);
 
 		yield put(updateTaskOnSuccess(task));

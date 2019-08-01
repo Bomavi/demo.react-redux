@@ -11,9 +11,8 @@ import {
 } from 'actions/tasks';
 
 export function* deleteWorker({ payload: id }: DeleteTaskAction) {
-	yield put(setDeleteInProgress(id, true));
-
 	try {
+		yield put(setDeleteInProgress(id, true));
 		const task = yield call(services.api.tasks.delete, id);
 
 		yield put(deleteTaskOnSuccess(task));
