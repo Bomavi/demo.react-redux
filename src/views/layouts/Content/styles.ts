@@ -6,7 +6,8 @@ export const styles = (theme: Theme) =>
 		main: {
 			display: 'flex',
 			width: '100%',
-			padding: '30px 0',
+			paddingTop: 30,
+			paddingBottom: theme.sizes.footer + 30,
 		},
 		toolbar: theme.mixins.toolbar,
 	});
