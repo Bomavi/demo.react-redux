@@ -9,6 +9,9 @@ import Divider from '@material-ui/core/Divider';
 /* root imports: view components */
 import { IconProps, InputButton } from 'views/elements';
 
+/* root imports: common */
+import { removeSpaces } from 'utils/helpers';
+
 /* local imports: common */
 import { styles } from './styles';
 
@@ -27,7 +30,10 @@ interface CustomeInputState {
 	inputValue: string;
 }
 
-class CustomInputComponent extends React.Component<CustomInputProps, CustomeInputState> {
+class CustomInputComponent extends React.PureComponent<
+	CustomInputProps,
+	CustomeInputState
+> {
 	public static defaultProps = {
 		isFetching: false,
 		autoFocus: false,
@@ -37,10 +43,14 @@ class CustomInputComponent extends React.Component<CustomInputProps, CustomeInpu
 		inputValue: '',
 	};
 
-	private isEmpty() {
+	private get isEmpty(): boolean {
 		const { inputValue } = this.state;
 		const { defaultValue } = this.props;
 		return !inputValue || inputValue === defaultValue;
+	}
+
+	private get trimedValue(): string {
+		return removeSpaces(this.state.inputValue).trim();
 	}
 
 	private changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,41 +61,41 @@ class CustomInputComponent extends React.Component<CustomInputProps, CustomeInpu
 				inputValue: value,
 			}),
 			() => {
-				this.changeCallbackHandler(value);
+				this.changeCallbackHandler();
 			}
 		);
 	};
 
 	private actionClickHandler = () => {
 		const { onClick, onCancel } = this.props;
-		if (onClick) onClick(this.state.inputValue);
+		if (onClick) onClick(this.trimedValue);
 		if (onCancel) onCancel();
 		this.clearInputValue();
 	};
 
 	private clearHandler = () => {
 		this.clearInputValue();
-		this.changeCallbackHandler(this.state.inputValue);
 	};
 
 	private clearInputValue = () => {
-		this.setState(() => ({ inputValue: '' }));
+		this.setState(() => ({ inputValue: '' }), () => this.changeCallbackHandler());
 	};
 
 	private keyPressHandler = (e: React.KeyboardEvent) => {
-		const { inputValue } = this.state;
 		const { onClick, onCancel } = this.props;
 
 		if (e.key === 'Enter' && onClick) {
-			if (inputValue) onClick(inputValue);
+			if (this.trimedValue) onClick(this.trimedValue);
 			if (onCancel) onCancel();
 			if (!onCancel) this.clearInputValue();
 		}
+
+		if (e.key === 'Escape' && onCancel) onCancel();
 	};
 
-	private changeCallbackHandler = (value: string) => {
+	private changeCallbackHandler = () => {
 		const { onChange } = this.props;
-		if (onChange) onChange(value);
+		if (onChange) onChange(this.trimedValue);
 	};
 
 	public render() {
@@ -110,7 +120,7 @@ class CustomInputComponent extends React.Component<CustomInputProps, CustomeInpu
 						icon={icon}
 						isFetching={isFetching}
 						color={onClick ? 'primary' : 'inherit'}
-						disabled={onClick && this.isEmpty()}
+						disabled={onClick && this.isEmpty}
 						onClick={onClick && this.actionClickHandler}
 					/>
 				)}
@@ -121,7 +131,7 @@ class CustomInputComponent extends React.Component<CustomInputProps, CustomeInpu
 					value={value}
 					autoFocus={autoFocus}
 					onChange={this.changeHandler}
-					onKeyPress={this.keyPressHandler}
+					onKeyUp={this.keyPressHandler}
 				/>
 				{(!this.isEmpty || onCancel) && <Divider className={classes.divider} />}
 				{!this.isEmpty && !onCancel && (
