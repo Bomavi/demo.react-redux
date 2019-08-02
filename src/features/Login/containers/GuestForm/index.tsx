@@ -16,11 +16,23 @@ import { AuthActionTypes } from 'actions/auth/types';
 /* local imports: common */
 import { styles } from './styles';
 
-interface GuestFormProps extends WithStyles<typeof styles> {
-	login: typeof login;
-}
+const mapStateToProps = (state: State) => ({});
 
-class GuestFormComponent extends React.Component<GuestFormProps> {
+const mapDispatchToProps = (dispatch: Dispatch<AuthActionTypes>) =>
+	bindActionCreators(
+		{
+			login,
+		},
+		dispatch
+	);
+
+interface GuestFormProps extends WithStyles<typeof styles> {}
+
+type Props = ReturnType<typeof mapStateToProps> &
+	ReturnType<typeof mapDispatchToProps> &
+	GuestFormProps;
+
+class GuestFormComponent extends React.Component<Props> {
 	public loginHandler = () => {
 		this.props.login({ isGuest: true });
 	};
@@ -40,16 +52,6 @@ class GuestFormComponent extends React.Component<GuestFormProps> {
 		);
 	}
 }
-
-const mapStateToProps = (state: State) => ({});
-
-const mapDispatchToProps = (dispatch: Dispatch<AuthActionTypes>) =>
-	bindActionCreators(
-		{
-			login,
-		},
-		dispatch
-	);
 
 const GuestFormWithStyles = withStyles(styles)(GuestFormComponent);
 const GuestFormWithRedux = connect(

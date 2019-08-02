@@ -17,12 +17,12 @@ const themeSelector = (state: State) => state.auth.theme.selectedThemeType;
 const pathnameSelector = () => history.location.pathname;
 
 export const getIsAuthenticated: Selector<State, boolean> = createSelector(
-	userSelector,
+	[userSelector],
 	user => !!user
 );
 
 export const getIsInitialized: Selector<State, boolean> = createSelector(
-	authSelector,
+	[authSelector],
 	auth => auth.isInitialized
 );
 
@@ -49,7 +49,7 @@ export const getNotAccessibleForUnauthorized: Selector<State, boolean> = createS
 );
 
 export const getSelectedTheme: Selector<State, Theme> = createSelector(
-	themeSelector,
+	[themeSelector],
 	theme => {
 		switch (theme) {
 			case 'light':
@@ -65,7 +65,7 @@ export const getSelectedTheme: Selector<State, Theme> = createSelector(
 );
 
 export const getThemeNameToSwitch: Selector<State, MUIThemeType> = createSelector(
-	themeSelector,
+	[themeSelector],
 	theme => {
 		switch (theme) {
 			case 'light':

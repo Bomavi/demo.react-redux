@@ -28,31 +28,23 @@ const mapDispatchToProps = () => ({});
 
 type Props = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
 
-class RoutesComponent extends React.Component<Props> {
-	public render() {
-		const {
-			accessibleOnlyForAuthorized,
-			accessibleOnlyForUnauthorized,
-			notAccessibleForAuthorized,
-			notAccessibleForUnauthorized,
-		} = this.props;
-
-		return (
-			<Router history={history}>
-				<Switch>
-					{accessibleOnlyForAuthorized && (
-						<Route exact path="/" component={Home} />
-					)}
-					{accessibleOnlyForUnauthorized && (
-						<Route exact path="/login" component={Login} />
-					)}
-					{notAccessibleForAuthorized && <Redirect to="/" />}
-					{notAccessibleForUnauthorized && <Redirect to="/login" />}
-				</Switch>
-			</Router>
-		);
-	}
-}
+const RoutesComponent: React.FC<Props> = ({
+	accessibleOnlyForAuthorized,
+	accessibleOnlyForUnauthorized,
+	notAccessibleForAuthorized,
+	notAccessibleForUnauthorized,
+}) => (
+	<Router history={history}>
+		<Switch>
+			{accessibleOnlyForAuthorized && <Route exact path="/" component={Home} />}
+			{accessibleOnlyForUnauthorized && (
+				<Route exact path="/login" component={Login} />
+			)}
+			{notAccessibleForAuthorized && <Redirect to="/" />}
+			{notAccessibleForUnauthorized && <Redirect to="/login" />}
+		</Switch>
+	</Router>
+);
 
 const RoutesWithRedux = connect(
 	mapStateToProps,

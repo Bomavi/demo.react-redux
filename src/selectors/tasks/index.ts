@@ -24,11 +24,11 @@ export const getSortedTasks: Selector<State, TaskType[]> = createSelector(
 );
 
 export const getTasksLenth: Selector<State, number> = createSelector(
-	tasksSelector,
+	[tasksSelector],
 	tasks => tasks.length
 );
 
 export const getTasksIsEmpty: Selector<State, boolean> = createSelector(
-	getTasksLenth,
+	[getTasksLenth],
 	tasksLength => tasksLength === 0
 );

@@ -98,21 +98,6 @@ export const auth: Reducer<AuthState, ActionTypes> = (
 			};
 		}
 
-		// case types.UPDATE_USER_ON_SUCCESS: {
-		// 	localStorage.setItem('theme',  action.payload.theme);
-		// 	return {
-		// 		...state,
-		// 		user: {
-		// 			...state.user,
-		// 			...action.payload,
-		// 		},
-		// 		theme: {
-		// 			...state.theme,
-		// 			selectedThemeType: action.payload.theme,
-		// 		},
-		// 	};
-		// }
-
 		case types.SET_THEME_IN_PROGRESS: {
 			return {
 				...state,

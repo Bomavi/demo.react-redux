@@ -24,7 +24,7 @@ interface SearchState {
 	searchQuery: string;
 }
 
-class SearchComponent extends React.Component<SearchProps> {
+class SearchComponent extends React.Component<SearchProps, SearchState> {
 	public state = {
 		searchQuery: '',
 	};
@@ -49,7 +49,6 @@ class SearchComponent extends React.Component<SearchProps> {
 	}, debounceTiming.input);
 
 	public render() {
-		// const { classes } = this.props;
 		const { isFetching } = this.props;
 
 		return (

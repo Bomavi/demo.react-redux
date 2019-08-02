@@ -21,10 +21,18 @@ import { AuthActionTypes } from 'actions/auth/types';
 /* local imports: common */
 import { styles } from './styles';
 
-interface LoginFormProps extends WithStyles<typeof styles> {
-	login: typeof login;
-	register: typeof register;
-}
+const mapStateToProps = (state: State) => ({});
+
+const mapDispatchToProps = (dispatch: Dispatch<AuthActionTypes>) =>
+	bindActionCreators(
+		{
+			login,
+			register,
+		},
+		dispatch
+	);
+
+interface LoginFormProps extends WithStyles<typeof styles> {}
 
 interface LoginFormState {
 	tabIndex: number;
@@ -33,7 +41,11 @@ interface LoginFormState {
 	repeatPassword: string;
 }
 
-class LoginFormComponent extends React.Component<LoginFormProps, LoginFormState> {
+type Props = ReturnType<typeof mapStateToProps> &
+	ReturnType<typeof mapDispatchToProps> &
+	LoginFormProps;
+
+class LoginFormComponent extends React.Component<Props, LoginFormState> {
 	public state = {
 		tabIndex: 0,
 		username: '',
@@ -146,17 +158,6 @@ class LoginFormComponent extends React.Component<LoginFormProps, LoginFormState>
 		);
 	}
 }
-
-const mapStateToProps = (state: State) => ({});
-
-const mapDispatchToProps = (dispatch: Dispatch<AuthActionTypes>) =>
-	bindActionCreators(
-		{
-			login,
-			register,
-		},
-		dispatch
-	);
 
 const LoginFormWithStyles = withStyles(styles)(LoginFormComponent);
 const LoginFormWithRedux = connect(
