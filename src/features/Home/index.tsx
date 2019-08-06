@@ -5,7 +5,8 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 
 /* local imports: common */
-import { ActionTabs, TaskList } from './containers';
+import { TaskList } from './containers';
+import { ActionTabs } from './components';
 
 interface HomeProps {}
 
