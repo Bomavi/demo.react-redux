@@ -18,25 +18,21 @@ interface DrawerItemProps {
 	onClick: () => void;
 }
 
-const DrawerItem: React.FC<DrawerItemProps> = ({
-	iconName,
-	text,
-	caption,
-	inProgress = false,
-	onClick,
-}) => {
-	return (
-		<ListItem button onClick={onClick}>
-			<ListItemIcon>
-				{inProgress ? (
-					<CircularProgress size={18} thickness={4} color="inherit" />
-				) : (
-					<Icon name={iconName} svgSize="md" />
-				)}
-			</ListItemIcon>
-			<ListItemText primary={text} secondary={caption} />
-		</ListItem>
-	);
-};
+const DrawerItem: React.FC<DrawerItemProps> = React.memo(
+	({ iconName, text, caption, inProgress = false, onClick }) => {
+		return (
+			<ListItem button onClick={onClick}>
+				<ListItemIcon>
+					{inProgress ? (
+						<CircularProgress size={18} thickness={4} color="inherit" />
+					) : (
+						<Icon name={iconName} svgSize="md" />
+					)}
+				</ListItemIcon>
+				<ListItemText primary={text} secondary={caption} />
+			</ListItem>
+		);
+	}
+);
 
 export { DrawerItem };

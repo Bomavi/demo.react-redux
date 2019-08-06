@@ -38,19 +38,21 @@ export interface IconProps extends IconParams {
 	title?: string;
 }
 
-const Icon: React.FC<IconProps> = ({ name, size = 'sm', svgSize = 'sm', color }) => {
-	const SVG = React.lazy(() => import(`assets/icons/${name}`));
-	const classes = useStyles({ color });
+const Icon: React.FC<IconProps> = React.memo(
+	({ name, size = 'sm', svgSize = 'sm', color }) => {
+		const SVG = React.lazy(() => import(`assets/icons/${name}`));
+		const classes = useStyles({ color });
 
-	return (
-		<div className={cx(classes.iconWrapper, size)}>
-			<div className={cx(classes.svgWrapper, svgSize)}>
-				<Suspense fallback={<HELP style={{ width: 16, height: 16 }} />}>
-					<SVG />
-				</Suspense>
+		return (
+			<div className={cx(classes.iconWrapper, size)}>
+				<div className={cx(classes.svgWrapper, svgSize)}>
+					<Suspense fallback={<HELP style={{ width: 16, height: 16 }} />}>
+						<SVG />
+					</Suspense>
+				</div>
 			</div>
-		</div>
-	);
-};
+		);
+	}
+);
 
 export { Icon };
