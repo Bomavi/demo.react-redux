@@ -7,7 +7,7 @@ import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 /* local imports: common */
 // import { useStyles } from './styles';
 
-const UsernameInput: React.FC<TextFieldProps> = props => {
+const UsernameInput: React.FC<TextFieldProps> = React.memo(props => {
 	// const classes = useStyles();
 
 	return (
@@ -21,6 +21,6 @@ const UsernameInput: React.FC<TextFieldProps> = props => {
 			variant="outlined"
 		/>
 	);
-};
+});
 
 export { UsernameInput };

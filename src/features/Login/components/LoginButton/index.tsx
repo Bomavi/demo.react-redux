@@ -12,19 +12,16 @@ export interface LoginButtonProps {
 	marginTop?: number;
 }
 
-const LoginButton: React.FC<LoginButtonProps & ButtonProps> = ({
-	children,
-	gradient,
-	marginTop = 0,
-	...props
-}) => {
-	const classes = useStyles({ marginTop, gradient });
+const LoginButton: React.FC<LoginButtonProps & ButtonProps> = React.memo(
+	({ children, gradient, marginTop = 0, ...props }) => {
+		const classes = useStyles({ marginTop, gradient });
 
-	return (
-		<Button className={classes.button} {...props}>
-			{children}
-		</Button>
-	);
-};
+		return (
+			<Button className={classes.button} {...props}>
+				{children}
+			</Button>
+		);
+	}
+);
 
 export { LoginButton };

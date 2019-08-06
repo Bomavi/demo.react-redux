@@ -13,7 +13,7 @@ export interface LoginTabsProps {
 	onChange: (e: React.ChangeEvent<{}>, v: number) => void;
 }
 
-const LoginTabs: React.FC<LoginTabsProps> = ({ tabIndex, onChange }) => {
+const LoginTabs: React.FC<LoginTabsProps> = React.memo(({ tabIndex, onChange }) => {
 	// const classes = useStyles();
 
 	return (
@@ -27,6 +27,6 @@ const LoginTabs: React.FC<LoginTabsProps> = ({ tabIndex, onChange }) => {
 			<Tab label="Register" />
 		</Tabs>
 	);
-};
+});
 
 export { LoginTabs };
