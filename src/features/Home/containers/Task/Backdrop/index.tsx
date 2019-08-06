@@ -13,7 +13,7 @@ export interface BackdropProps {
 	onClick?: () => void;
 }
 
-const Backdrop: React.FC<BackdropProps> = ({ fadeIn, onClick }) => {
+const Backdrop: React.FC<BackdropProps> = React.memo(({ fadeIn, onClick }) => {
 	const classes = useStyles();
 
 	return (
@@ -21,6 +21,6 @@ const Backdrop: React.FC<BackdropProps> = ({ fadeIn, onClick }) => {
 			<ButtonBase disableRipple className={classes.backdrop} onClick={onClick} />
 		</Fade>
 	);
-};
+});
 
 export { Backdrop };

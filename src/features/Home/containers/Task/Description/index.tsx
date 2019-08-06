@@ -9,7 +9,7 @@ import { useStyles } from './styles';
 
 export interface DescriptionProps {}
 
-const Description: React.FC<DescriptionProps> = ({ children }) => {
+const Description: React.FC<DescriptionProps> = React.memo(({ children }) => {
 	const classes = useStyles();
 
 	return (
@@ -22,6 +22,6 @@ const Description: React.FC<DescriptionProps> = ({ children }) => {
 			{children}
 		</Typography>
 	);
-};
+});
 
 export { Description };
