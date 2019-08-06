@@ -1,5 +1,4 @@
-export * from './AddTask';
-export * from './Search';
+export * from './ActionTabs';
 export * from './TaskCheckbox';
 export * from './TaskActions';
 export * from './SortButton';

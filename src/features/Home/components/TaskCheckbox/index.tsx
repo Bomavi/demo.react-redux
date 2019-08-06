@@ -15,33 +15,30 @@ export interface TaskCheckboxProps {
 	onChange: () => void;
 }
 
-const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
-	value,
-	disabled,
-	onChange,
-	isFetching = false,
-}) => {
-	const classes = useStyles();
+const TaskCheckbox: React.FC<TaskCheckboxProps> = React.memo(
+	({ value, disabled, onChange, isFetching = false }) => {
+		const classes = useStyles();
 
-	if (isFetching) {
+		if (isFetching) {
+			return (
+				<div className={classes.root}>
+					<CircularProgress size={18} thickness={4} color="inherit" />
+				</div>
+			);
+		}
+
 		return (
 			<div className={classes.root}>
-				<CircularProgress size={18} thickness={4} color="inherit" />
+				<Checkbox
+					checked={value}
+					color="primary"
+					title={value ? 'Uncomplete' : 'Complete'}
+					disabled={disabled}
+					onChange={onChange}
+				/>
 			</div>
 		);
 	}
-
-	return (
-		<div className={classes.root}>
-			<Checkbox
-				checked={value}
-				color="primary"
-				title={value ? 'Uncomplete' : 'Complete'}
-				disabled={disabled}
-				onChange={onChange}
-			/>
-		</div>
-	);
-};
+);
 
 export { TaskCheckbox };

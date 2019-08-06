@@ -18,8 +18,10 @@ export interface SortButtonProps {
 
 const SortButton: React.FC<SortButtonProps> = ({ sortKey, disabled, onClick }) => {
 	const classes = useStyles();
+
 	const isAsc = sortKey === 'asc';
 	const isDesc = sortKey === 'desc';
+
 	const newFirstTitle = 'Recently created first';
 	const oldFirstTitle = 'Oldest first';
 

@@ -19,51 +19,47 @@ export interface TaskActionsProps {
 	onEdit: () => void;
 }
 
-const TaskActions: React.FC<TaskActionsProps> = ({
-	children,
-	disabled,
-	onDelete,
-	onEdit,
-	isFetching = false,
-}) => {
-	const classes = useStyles();
+const TaskActions: React.FC<TaskActionsProps> = React.memo(
+	({ children, disabled, onDelete, onEdit, isFetching = false }) => {
+		const classes = useStyles();
 
-	if (isFetching) {
+		if (isFetching) {
+			return (
+				<div className={cx(classes.root, 'small')}>
+					<CircularProgress size={18} thickness={4} color="inherit" />
+				</div>
+			);
+		}
+
+		if (!onDelete && children) {
+			return <div className={classes.root}>{children}</div>;
+		}
+
 		return (
-			<div className={cx(classes.root, 'small')}>
-				<CircularProgress size={18} thickness={4} color="inherit" />
+			<div className={classes.root}>
+				<div className={classes.iconButtonWrapper}>
+					<IconButton
+						className={classes.iconButton}
+						disabled={disabled || isFetching}
+						title="Edit"
+						onClick={onEdit}
+					>
+						<Icon name="pencil" size="sm" />
+					</IconButton>
+				</div>
+				<div className={classes.iconButtonWrapper}>
+					<IconButton
+						className={classes.iconButton}
+						disabled={disabled || isFetching}
+						title="Delete"
+						onClick={onDelete}
+					>
+						<Icon name="delete" size="sm" />
+					</IconButton>
+				</div>
 			</div>
 		);
 	}
-
-	if (!onDelete && children) {
-		return <div className={classes.root}>{children}</div>;
-	}
-
-	return (
-		<div className={classes.root}>
-			<div className={classes.iconButtonWrapper}>
-				<IconButton
-					className={classes.iconButton}
-					disabled={disabled || isFetching}
-					title="Edit"
-					onClick={onEdit}
-				>
-					<Icon name="pencil" size="sm" />
-				</IconButton>
-			</div>
-			<div className={classes.iconButtonWrapper}>
-				<IconButton
-					className={classes.iconButton}
-					disabled={disabled || isFetching}
-					title="Delete"
-					onClick={onDelete}
-				>
-					<Icon name="delete" size="sm" />
-				</IconButton>
-			</div>
-		</div>
-	);
-};
+);
 
 export { TaskActions };
