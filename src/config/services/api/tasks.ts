@@ -18,6 +18,6 @@ export class TasksApi extends Base {
 	};
 
 	public delete = async (id: string) => {
-		return await this.apiClient.delete(`/tasks/${id}`);
+		return await this.apiClient.delete<string>(`/tasks/${id}`);
 	};
 }

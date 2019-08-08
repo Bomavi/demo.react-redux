@@ -66,7 +66,7 @@ export class ApiClient {
 		}) as Promise<E>;
 	}
 
-	public delete<E = {}>(url: string, params?: {}): Promise<E> {
+	public delete<E = string>(url: string, params?: {}): Promise<E> {
 		return this.request({
 			url,
 			params,
