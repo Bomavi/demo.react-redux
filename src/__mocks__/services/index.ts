@@ -15,7 +15,7 @@ export interface MockServerResponse {
 export interface MockServerResponseSchema {
 	method: 'onGet' | 'onPost' | 'onPut' | 'onPatch' | 'onDelete';
 	path: string | RegExp;
-	responseData: object | object[];
+	responseData: string | object | object[];
 }
 
 export const mockServerResponse = (
