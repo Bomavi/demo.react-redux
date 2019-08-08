@@ -1,6 +1,6 @@
 const taskFabric = (index: number): TaskType => {
 	return {
-		_id: index.toString(),
+		_id: `t_id_${index}`,
 		description: `Description Num ${index}`,
 		completed: false,
 		createdAt: 'some date',
