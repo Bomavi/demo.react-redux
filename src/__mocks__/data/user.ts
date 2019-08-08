@@ -1,6 +1,6 @@
 const userFabric = (index: number): UserType => {
 	return {
-		_id: index.toString(),
+		_id: `u_id_${index}`,
 		username: `user_num_${index}`,
 		theme: 'light',
 		createdAt: 'some date',
