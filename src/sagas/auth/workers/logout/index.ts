@@ -9,9 +9,9 @@ export function* logoutWorker() {
 	yield put(setInProgress(true));
 
 	try {
-		const id = yield call(services.auth.logout);
+		yield call(services.auth.logout);
 
-		yield put(logoutOnSuccess(id));
+		yield put(logoutOnSuccess());
 	} catch (e) {
 		yield put(logoutOnFail(e.message));
 	} finally {
