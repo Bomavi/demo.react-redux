@@ -19,13 +19,13 @@ const schema: MockServerResponseSchema[] = [
 	},
 	{
 		method: 'onPut',
-		path: apiPrefix,
+		path: new RegExp(`${apiPrefix}/*`),
 		responseData: task,
 	},
 	{
 		method: 'onDelete',
-		path: apiPrefix,
-		responseData: {},
+		path: new RegExp(`${apiPrefix}/*`),
+		responseData: task._id,
 	},
 ];
 
