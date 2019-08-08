@@ -14,9 +14,9 @@ export function* deleteWorker({ payload: id }: DeleteTaskAction) {
 	yield put(setDeleteInProgress(id, true));
 
 	try {
-		const task = yield call(services.api.tasks.delete, id);
+		const deletedTaskId = yield call(services.api.tasks.delete, id);
 
-		yield put(deleteTaskOnSuccess(task));
+		yield put(deleteTaskOnSuccess(deletedTaskId));
 	} catch (e) {
 		yield put(deleteTaskOnFail(e.message));
 	} finally {
