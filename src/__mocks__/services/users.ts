@@ -9,7 +9,7 @@ const apiPrefix = `${API_URL}/users`;
 const schema: MockServerResponseSchema[] = [
 	{
 		method: 'onPut',
-		path: apiPrefix,
+		path: new RegExp(`${apiPrefix}/*`),
 		responseData: user,
 	},
 ];
