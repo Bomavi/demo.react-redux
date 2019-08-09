@@ -5,30 +5,41 @@ import { mockedTasksServerResponse } from '__mocks__/services/tasks';
 /* root imports: common */
 import { recordSaga } from 'utils/helpers';
 import { setIsFetching, fetchTasksOnSuccess, fetchTasksOnFail } from 'actions/tasks';
+import * as types from 'actions/tasks/types';
 
 /* local imports: common */
 import { fetchWorker } from '.';
 
-describe('Saga: FETCH_TASKS:', () => {
-	it('FETCH_TASKS_ON_FAIL:', async () => {
+describe('Saga: FETCH_TASKS', () => {
+	afterEach(() => {
+		mockedTasksServerResponse.reset();
+	});
+
+	afterAll(() => {
+		mockedTasksServerResponse.restore();
+	});
+
+	test(types.FETCH_TASKS_ON_FAIL, async () => {
 		mockedTasksServerResponse.initFailResponse();
 		const dispatched = await recordSaga(fetchWorker);
-		mockedTasksServerResponse.reset();
+		const toEqual = [
+			setIsFetching(true),
+			fetchTasksOnFail('Error: Network Error'),
+			setIsFetching(false),
+		];
 
-		expect(dispatched).toContainEqual(setIsFetching(true));
-		expect(dispatched).toContainEqual(fetchTasksOnFail('Error: Network Error'));
-		expect(dispatched).toContainEqual(setIsFetching(false));
+		expect(dispatched).toEqual(toEqual);
 	});
 
-	it('FETCH_TASKS_ON_SUCCESS:', async () => {
+	test(types.FETCH_TASKS_ON_SUCCESS, async () => {
 		mockedTasksServerResponse.initSuccessResponse();
 		const dispatched = await recordSaga(fetchWorker);
-		mockedTasksServerResponse.reset();
+		const toEqual = [
+			setIsFetching(true),
+			fetchTasksOnSuccess(tasks),
+			setIsFetching(false),
+		];
 
-		expect(dispatched).toContainEqual(setIsFetching(true));
-		expect(dispatched).toContainEqual(fetchTasksOnSuccess(tasks));
-		expect(dispatched).toContainEqual(setIsFetching(false));
+		expect(dispatched).toEqual(toEqual);
 	});
-
-	mockedTasksServerResponse.restore();
 });
