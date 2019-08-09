@@ -9,11 +9,20 @@ import {
 	updateTaskOnSuccess,
 	updateTaskOnFail,
 } from 'actions/tasks';
+import * as types from 'actions/tasks/types';
 
 /* local imports: common */
 import { updateWorker } from '.';
 
-describe('Saga: UPDATE_TASK:', () => {
+describe('Saga: UPDATE_TASK', () => {
+	afterEach(() => {
+		mockedTasksServerResponse.reset();
+	});
+
+	afterAll(() => {
+		mockedTasksServerResponse.restore();
+	});
+
 	const id = task._id;
 	const data: TaskUpdateSchema = {
 		description: task.description,
@@ -24,25 +33,27 @@ describe('Saga: UPDATE_TASK:', () => {
 		data,
 	};
 
-	it('UPDATE_TASK_ON_FAIL:', async () => {
+	test(types.UPDATE_TASK_ON_FAIL, async () => {
 		mockedTasksServerResponse.initFailResponse();
 		const dispatched = await recordSaga(updateWorker, { payload });
-		mockedTasksServerResponse.reset();
+		const toEqual = [
+			setUpdateInProgress(id, true),
+			updateTaskOnFail('Error: Network Error'),
+			setUpdateInProgress(id, false),
+		];
 
-		expect(dispatched).toContainEqual(setUpdateInProgress(id, true));
-		expect(dispatched).toContainEqual(updateTaskOnFail('Error: Network Error'));
-		expect(dispatched).toContainEqual(setUpdateInProgress(id, false));
+		expect(dispatched).toEqual(toEqual);
 	});
 
-	it('UPDATE_TASK_ON_SUCCESS:', async () => {
+	test(types.UPDATE_TASK_ON_SUCCESS, async () => {
 		mockedTasksServerResponse.initSuccessResponse();
 		const dispatched = await recordSaga(updateWorker, { payload });
-		mockedTasksServerResponse.reset();
+		const toEqual = [
+			setUpdateInProgress(id, true),
+			updateTaskOnSuccess(task),
+			setUpdateInProgress(id, false),
+		];
 
-		expect(dispatched).toContainEqual(setUpdateInProgress(id, true));
-		expect(dispatched).toContainEqual(updateTaskOnSuccess(task));
-		expect(dispatched).toContainEqual(setUpdateInProgress(id, false));
+		expect(dispatched).toEqual(toEqual);
 	});
-
-	mockedTasksServerResponse.restore();
 });
