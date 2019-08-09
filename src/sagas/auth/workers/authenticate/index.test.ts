@@ -9,28 +9,36 @@ import {
 	authenticateOnSuccess,
 	authenticateOnFail,
 } from 'actions/auth';
+import * as types from 'actions/auth/types';
 
 /* local imports: common */
 import { authenticateWorker } from '.';
 
-describe('Saga: AUTHENTICATE:', () => {
-	it('AUTHENTICATE_ON_FAIL:', async () => {
+describe('Saga: AUTHENTICATE', () => {
+	afterEach(() => {
+		mockedAuthServerResponse.reset();
+	});
+
+	afterAll(() => {
+		mockedAuthServerResponse.restore();
+	});
+
+	test(types.AUTHENTICATE_ON_FAIL, async () => {
 		mockedAuthServerResponse.initFailResponse();
 		const dispatched = await recordSaga(authenticateWorker);
-		mockedAuthServerResponse.reset();
+		const toEqual = [
+			authenticateOnFail('Error: Network Error'),
+			setIsInitialized(true),
+		];
 
-		expect(dispatched).toContainEqual(authenticateOnFail('Error: Network Error'));
-		expect(dispatched).toContainEqual(setIsInitialized(true));
+		expect(dispatched).toEqual(toEqual);
 	});
 
-	it('AUTHENTICATE_ON_SUCCESS:', async () => {
+	test(types.AUTHENTICATE_ON_SUCCESS, async () => {
 		mockedAuthServerResponse.initSuccessResponse();
 		const dispatched = await recordSaga(authenticateWorker);
-		mockedAuthServerResponse.reset();
+		const toEqual = [authenticateOnSuccess(user), setIsInitialized(true)];
 
-		expect(dispatched).toContainEqual(authenticateOnSuccess(user));
-		expect(dispatched).toContainEqual(setIsInitialized(true));
+		expect(dispatched).toEqual(toEqual);
 	});
-
-	mockedAuthServerResponse.restore();
 });
