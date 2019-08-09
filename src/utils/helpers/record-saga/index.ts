@@ -2,7 +2,7 @@
 import { runSaga } from 'redux-saga';
 
 /* root imports: common */
-import { getState } from '__mocks__/store';
+import { getUpdatedState } from '__mocks__/state';
 
 export const recordSaga = async (saga: any, initialAction: any = {}) => {
 	const dispatched: any[] = [];
@@ -10,7 +10,7 @@ export const recordSaga = async (saga: any, initialAction: any = {}) => {
 	await runSaga(
 		{
 			dispatch: action => dispatched.push(action),
-			getState: () => getState(),
+			getState: () => getUpdatedState(),
 		},
 		saga,
 		initialAction
