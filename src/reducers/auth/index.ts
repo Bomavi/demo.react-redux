@@ -2,7 +2,6 @@
 import { Reducer } from 'redux';
 
 /* root imports: common */
-import { themeValidator } from 'utils/helpers';
 import { AuthActionTypes } from 'actions/auth/types';
 import * as authTypes from 'actions/auth/types';
 import { UserActionTypes } from 'actions/user/types';
@@ -53,22 +52,8 @@ export const auth: Reducer<AuthState, ActionTypes> = (
 		}
 
 		case types.SET_IS_INITIALIZED: {
-			const localThemeType = localStorage.getItem('theme');
-			let selectedThemeType: MUIThemeType;
-
-			if (localThemeType && themeValidator(localThemeType)) {
-				selectedThemeType = localThemeType as MUIThemeType;
-			} else {
-				selectedThemeType = state.theme.selectedThemeType;
-				localStorage.setItem('theme', state.theme.selectedThemeType);
-			}
-
 			return {
 				...state,
-				theme: {
-					...state.theme,
-					selectedThemeType,
-				},
 				isInitialized: action.payload,
 			};
 		}
@@ -77,7 +62,6 @@ export const auth: Reducer<AuthState, ActionTypes> = (
 		case types.LOGIN_ON_SUCCESS:
 		case types.REGISTER_ON_SUCCESS:
 		case types.UPDATE_USER_ON_SUCCESS: {
-			localStorage.setItem('theme', action.payload.theme);
 			return {
 				...state,
 				user: {
