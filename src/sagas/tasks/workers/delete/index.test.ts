@@ -9,32 +9,43 @@ import {
 	deleteTaskOnSuccess,
 	deleteTaskOnFail,
 } from 'actions/tasks';
+import * as types from 'actions/tasks/types';
 
 /* local imports: common */
 import { deleteWorker } from '.';
 
-describe('Saga: DELETE_TASK:', () => {
+describe('Saga: DELETE_TASK', () => {
+	afterEach(() => {
+		mockedTasksServerResponse.reset();
+	});
+
+	afterAll(() => {
+		mockedTasksServerResponse.restore();
+	});
+
 	const id = task._id;
 
-	it('DELETE_TASK_ON_FAIL:', async () => {
+	test(types.DELETE_TASK_ON_FAIL, async () => {
 		mockedTasksServerResponse.initFailResponse();
 		const dispatched = await recordSaga(deleteWorker, { payload: id });
-		mockedTasksServerResponse.reset();
+		const toEqual = [
+			setDeleteInProgress(id, true),
+			deleteTaskOnFail('Error: Network Error'),
+			setDeleteInProgress(id, false),
+		];
 
-		expect(dispatched).toContainEqual(setDeleteInProgress(id, true));
-		expect(dispatched).toContainEqual(deleteTaskOnFail('Error: Network Error'));
-		expect(dispatched).toContainEqual(setDeleteInProgress(id, false));
+		expect(dispatched).toEqual(toEqual);
 	});
 
-	it('DELETE_TASK_ON_SUCCESS:', async () => {
+	test(types.DELETE_TASK_ON_SUCCESS, async () => {
 		mockedTasksServerResponse.initSuccessResponse();
 		const dispatched = await recordSaga(deleteWorker, { payload: id });
-		mockedTasksServerResponse.reset();
+		const toEqual = [
+			setDeleteInProgress(id, true),
+			deleteTaskOnSuccess(id),
+			setDeleteInProgress(id, false),
+		];
 
-		expect(dispatched).toContainEqual(setDeleteInProgress(id, true));
-		expect(dispatched).toContainEqual(deleteTaskOnSuccess(id));
-		expect(dispatched).toContainEqual(setDeleteInProgress(id, false));
+		expect(dispatched).toEqual(toEqual);
 	});
-
-	mockedTasksServerResponse.restore();
 });
