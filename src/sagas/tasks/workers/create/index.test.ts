@@ -5,30 +5,41 @@ import { mockedTasksServerResponse } from '__mocks__/services/tasks';
 /* root imports: common */
 import { recordSaga } from 'utils/helpers';
 import { setInProgress, createTaskOnSuccess, createTaskOnFail } from 'actions/tasks';
+import * as types from 'actions/tasks/types';
 
 /* local imports: common */
 import { createWorker } from '.';
 
-describe('Saga: CREATE_TASK:', () => {
-	it('CREATE_TASK_ON_FAIL:', async () => {
+describe('Saga: CREATE_TASK', () => {
+	afterEach(() => {
+		mockedTasksServerResponse.reset();
+	});
+
+	afterAll(() => {
+		mockedTasksServerResponse.restore();
+	});
+
+	test(types.CREATE_TASK_ON_FAIL, async () => {
 		mockedTasksServerResponse.initFailResponse();
 		const dispatched = await recordSaga(createWorker);
-		mockedTasksServerResponse.reset();
+		const toEqual = [
+			setInProgress(true),
+			createTaskOnFail('Error: Network Error'),
+			setInProgress(false),
+		];
 
-		expect(dispatched).toContainEqual(setInProgress(true));
-		expect(dispatched).toContainEqual(createTaskOnFail('Error: Network Error'));
-		expect(dispatched).toContainEqual(setInProgress(false));
+		expect(dispatched).toEqual(toEqual);
 	});
 
-	it('CREATE_TASK_ON_SUCCESS:', async () => {
+	test(types.CREATE_TASK_ON_SUCCESS, async () => {
 		mockedTasksServerResponse.initSuccessResponse();
 		const dispatched = await recordSaga(createWorker);
-		mockedTasksServerResponse.reset();
+		const toEqual = [
+			setInProgress(true),
+			createTaskOnSuccess(task),
+			setInProgress(false),
+		];
 
-		expect(dispatched).toContainEqual(setInProgress(true));
-		expect(dispatched).toContainEqual(createTaskOnSuccess(task));
-		expect(dispatched).toContainEqual(setInProgress(false));
+		expect(dispatched).toEqual(toEqual);
 	});
-
-	mockedTasksServerResponse.restore();
 });
