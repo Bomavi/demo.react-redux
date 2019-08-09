@@ -5,30 +5,41 @@ import { mockedAuthServerResponse } from '__mocks__/services/auth';
 /* root imports: common */
 import { recordSaga } from 'utils/helpers';
 import { setInProgress, registerOnSuccess, registerOnFail } from 'actions/auth';
+import * as types from 'actions/auth/types';
 
 /* local imports: common */
 import { registerWorker } from '.';
 
-describe('Saga: REGISTER:', () => {
-	it('REGISTER_ON_FAIL:', async () => {
+describe('Saga: REGISTER', () => {
+	afterEach(() => {
+		mockedAuthServerResponse.reset();
+	});
+
+	afterAll(() => {
+		mockedAuthServerResponse.restore();
+	});
+
+	test(types.REGISTER_ON_FAIL, async () => {
 		mockedAuthServerResponse.initFailResponse();
 		const dispatched = await recordSaga(registerWorker);
-		mockedAuthServerResponse.reset();
+		const toEqual = [
+			setInProgress(true),
+			registerOnFail('Error: Network Error'),
+			setInProgress(false),
+		];
 
-		expect(dispatched).toContainEqual(setInProgress(true));
-		expect(dispatched).toContainEqual(registerOnFail('Error: Network Error'));
-		expect(dispatched).toContainEqual(setInProgress(false));
+		expect(dispatched).toEqual(toEqual);
 	});
 
-	it('REGISTER_ON_SUCCESS:', async () => {
+	test(types.REGISTER_ON_SUCCESS, async () => {
 		mockedAuthServerResponse.initSuccessResponse();
 		const dispatched = await recordSaga(registerWorker);
-		mockedAuthServerResponse.reset();
+		const toEqual = [
+			setInProgress(true),
+			registerOnSuccess(user),
+			setInProgress(false),
+		];
 
-		expect(dispatched).toContainEqual(setInProgress(true));
-		expect(dispatched).toContainEqual(registerOnSuccess(user));
-		expect(dispatched).toContainEqual(setInProgress(false));
+		expect(dispatched).toEqual(toEqual);
 	});
-
-	mockedAuthServerResponse.restore();
 });
