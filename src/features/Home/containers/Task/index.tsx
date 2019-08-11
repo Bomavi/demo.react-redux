@@ -86,6 +86,7 @@ class TaskComponent extends React.Component<Props> {
 	private completeHandler = () => {
 		const { task, updateTask } = this.props;
 		updateTask(task._id, { ...task, completed: !task.completed });
+		this.mouseLeaveHandler();
 	};
 
 	private saveHandler = (value: string) => {
@@ -114,7 +115,7 @@ class TaskComponent extends React.Component<Props> {
 					onChange={this.completeHandler}
 				/>
 				<Divider className={classes.divider} />
-				<Description>{task.description}</Description>
+				<Description completed={task.completed}>{task.description}</Description>
 				{isHovered && !task.deleteInProgress && (
 					<Divider className={classes.divider} />
 				)}
