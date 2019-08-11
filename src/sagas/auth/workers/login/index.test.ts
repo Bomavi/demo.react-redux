@@ -24,7 +24,7 @@ describe('Saga: LOGIN', () => {
 		const dispatched = await recordSaga(loginWorker);
 		const toEqual = [
 			setInProgress(true),
-			loginOnFail('Error: Network Error'),
+			loginOnFail('Network Error'),
 			setInProgress(false),
 		];
 

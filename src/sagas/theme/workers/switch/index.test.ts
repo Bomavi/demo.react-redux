@@ -27,7 +27,7 @@ describe('Saga: SWITCH_THEME', () => {
 		const dispatched = await recordSaga(switchWorker, { payload });
 		const toEqual = [
 			setThemeInProgress(true),
-			updateUserOnFail('Error: Network Error'),
+			updateUserOnFail('Network Error'),
 			setThemeInProgress(false),
 		];
 

@@ -30,7 +30,7 @@ describe('Saga: DELETE_TASK', () => {
 		const dispatched = await recordSaga(deleteWorker, { payload: id });
 		const toEqual = [
 			setDeleteInProgress(id, true),
-			deleteTaskOnFail('Error: Network Error'),
+			deleteTaskOnFail('Network Error'),
 			setDeleteInProgress(id, false),
 		];
 

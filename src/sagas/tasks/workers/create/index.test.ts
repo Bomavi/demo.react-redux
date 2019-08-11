@@ -24,7 +24,7 @@ describe('Saga: CREATE_TASK', () => {
 		const dispatched = await recordSaga(createWorker);
 		const toEqual = [
 			setInProgress(true),
-			createTaskOnFail('Error: Network Error'),
+			createTaskOnFail('Network Error'),
 			setInProgress(false),
 		];
 

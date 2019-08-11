@@ -24,7 +24,7 @@ describe('Saga: REGISTER', () => {
 		const dispatched = await recordSaga(registerWorker);
 		const toEqual = [
 			setInProgress(true),
-			registerOnFail('Error: Network Error'),
+			registerOnFail('Network Error'),
 			setInProgress(false),
 		];
 

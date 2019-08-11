@@ -23,7 +23,7 @@ describe('Saga: LOGOUT:', () => {
 		const dispatched = await recordSaga(logoutWorker);
 		const toEqual = [
 			setInProgress(true),
-			logoutOnFail('Error: Network Error'),
+			logoutOnFail('Network Error'),
 			setInProgress(false),
 		];
 

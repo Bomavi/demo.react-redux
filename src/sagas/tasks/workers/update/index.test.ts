@@ -38,7 +38,7 @@ describe('Saga: UPDATE_TASK', () => {
 		const dispatched = await recordSaga(updateWorker, { payload });
 		const toEqual = [
 			setUpdateInProgress(id, true),
-			updateTaskOnFail('Error: Network Error'),
+			updateTaskOnFail('Network Error'),
 			setUpdateInProgress(id, false),
 		];
 

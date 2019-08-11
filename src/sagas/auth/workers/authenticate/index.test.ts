@@ -26,10 +26,7 @@ describe('Saga: AUTHENTICATE', () => {
 	test(types.AUTHENTICATE_ON_FAIL, async () => {
 		mockedAuthServerResponse.initFailResponse();
 		const dispatched = await recordSaga(authenticateWorker);
-		const toEqual = [
-			authenticateOnFail('Error: Network Error'),
-			setIsInitialized(true),
-		];
+		const toEqual = [authenticateOnFail('Network Error'), setIsInitialized(true)];
 
 		expect(dispatched).toEqual(toEqual);
 	});

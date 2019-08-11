@@ -24,7 +24,7 @@ describe('Saga: FETCH_TASKS', () => {
 		const dispatched = await recordSaga(fetchWorker);
 		const toEqual = [
 			setIsFetching(true),
-			fetchTasksOnFail('Error: Network Error'),
+			fetchTasksOnFail('Network Error'),
 			setIsFetching(false),
 		];
 
