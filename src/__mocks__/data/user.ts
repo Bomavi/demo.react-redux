@@ -3,8 +3,8 @@ const userFabric = (index: number): UserType => {
 		_id: `u_id_${index}`,
 		username: `user_num_${index}`,
 		theme: 'light',
-		createdAt: 'some date',
-		updatedAt: 'some date',
+		createdAt: 'Sun Aug 1 2019 00:00:00 GMT+0300',
+		updatedAt: 'Sun Aug 1 2019 00:00:00 GMT+0300',
 	};
 };
 

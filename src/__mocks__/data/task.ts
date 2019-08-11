@@ -3,8 +3,8 @@ const taskFabric = (index: number): TaskType => {
 		_id: `t_id_${index}`,
 		description: `Description Num ${index}`,
 		completed: false,
-		createdAt: 'some date',
-		updatedAt: 'some date',
+		createdAt: 'Sun Aug 1 2019 00:00:00 GMT+0300',
+		updatedAt: 'Sun Aug 1 2019 00:00:00 GMT+0300',
 	};
 };
 
