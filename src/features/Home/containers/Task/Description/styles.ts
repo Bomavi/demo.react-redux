@@ -8,6 +8,10 @@ export const useStyles = makeStyles((theme: Theme) =>
 			flexShrink: 2,
 			width: '100%',
 			padding: '0 20px',
+
+			'&.completed': {
+				textDecoration: 'line-through',
+			},
 		},
 	})
 );
