@@ -18,12 +18,12 @@ export interface MockServerResponseSchema {
 	responseData: string | object | object[];
 }
 
+const mock = new MockAdapter(axios);
+
 export const mockServerResponse = (
 	apiPrefix: string,
 	schema: MockServerResponseSchema[]
 ): MockServerResponse => {
-	const mock = new MockAdapter(axios);
-
 	return {
 		initSuccessResponse() {
 			for (const req of schema) {
