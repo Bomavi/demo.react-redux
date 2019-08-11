@@ -7,9 +7,7 @@ import { CustomInput, CustomInputProps } from 'views/elements';
 /* local imports: common */
 import { useStyles } from './styles';
 
-export interface EditInputProps extends Partial<CustomInputProps> {
-	isFetching?: boolean;
-}
+export interface EditInputProps extends Partial<CustomInputProps> {}
 
 const EditInput: React.FC<EditInputProps> = props => {
 	const classes = useStyles();
