@@ -22,6 +22,12 @@ import { getSortedTasks, getTasksIsEmpty, getTasksLenth } from 'selectors';
 /* local imports: common */
 import { styles } from './styles';
 
+const spring = {
+	type: 'spring',
+	damping: 50,
+	stiffness: 500,
+};
+
 const mapStateToProps = (state: State) => ({
 	sortKey: state.tasks.sort,
 	tasks: getSortedTasks(state),
@@ -75,7 +81,7 @@ class TaskListComponent extends React.Component<Props> {
 				</div>
 				{!isEmpty
 					? tasks.map((task, i) => (
-							<motion.div key={task._id} positionTransition>
+							<motion.div key={task._id} positionTransition={spring}>
 								<Task task={task} isLastChild={tasksLength === i + 1} />
 							</motion.div>
 					  ))
