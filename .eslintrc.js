@@ -12,7 +12,6 @@ module.exports = {
 	],
 	rules: {
 		// eslint
-		allowTemplateLiterals: true,
 		'no-console': ['warn', { allow: ['warn', 'error'] }],
 		'lines-around-comment': ['error', { beforeBlockComment: true }],
 		'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
