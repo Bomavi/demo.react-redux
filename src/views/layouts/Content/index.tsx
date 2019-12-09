@@ -21,7 +21,9 @@ const mapStateToProps = (state: State) => ({
 
 const mapDispatchToProps = () => ({});
 
-interface ContentProps extends WithStyles<typeof styles> {}
+interface ContentProps extends WithStyles<typeof styles> {
+	children?: React.ReactNode;
+}
 
 type Props = ReturnType<typeof mapStateToProps> &
 	ReturnType<typeof mapDispatchToProps> &
@@ -44,9 +46,6 @@ class ContentComponent extends React.Component<Props> {
 }
 
 const ContentWithStyles = withStyles(styles)(ContentComponent);
-const ContentWithRedux = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ContentWithStyles);
+const ContentWithRedux = connect(mapStateToProps, mapDispatchToProps)(ContentWithStyles);
 
 export const Content = ContentWithRedux;

@@ -63,9 +63,6 @@ class AppComponent extends React.Component<Props> {
 }
 
 const AppWithStyles = withStyles(styles)(AppComponent);
-const AppWithRedux = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(AppWithStyles);
+const AppWithRedux = connect(mapStateToProps, mapDispatchToProps)(AppWithStyles);
 
 export const App = AppWithRedux;
