@@ -1,42 +1,124 @@
-/* npm imports: material-ui/core */
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
-/* local imports: common */
-import { defaultTheme } from './default';
+import { COLORS, GRADIENTS } from 'src/utils/constants/colors';
 
-const drawerWidth = 300;
+export const themeOverrides = createTheme({
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
+        },
+      },
+    },
 
-/* NOTE: usage: { overrides: themeWithOverrides.overrides } */
-export const themeWithOverrides = createMuiTheme({
-	overrides: {
-		MuiDrawer: {
-			root: {
-				width: drawerWidth,
-			},
-			docked: {
-				width: drawerWidth,
-			},
-			paper: {
-				width: drawerWidth,
-			},
-		},
-		MuiTextField: {
-			root: {
-				'& input:-webkit-autofill': {
-					'-webkit-transition-delay': '99999s',
-				},
-				'& input:-webkit-autofill:hover': {
-					'-webkit-transition-delay': '99999s',
-				},
-				'& input:-webkit-autofill:focus': {
-					'-webkit-transition-delay': '99999s',
-				},
-				'& input:-webkit-autofill:active': {
-					'-webkit-transition-delay': '99999s',
-				},
-			},
-		},
-	},
-	gradients: defaultTheme.gradients,
-	sizes: defaultTheme.sizes,
+    MuiButton: {
+      defaultProps: {
+        // disableElevation: true,
+      },
+
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
+          fontSize: 13,
+          fontWeight: 600,
+          minWidth: 100,
+        },
+
+        contained: {
+          borderWidth: 2,
+          borderStyle: 'solid',
+        },
+
+        containedPrimary: {
+          background: GRADIENTS.primary,
+          borderColor: COLORS.primary.main,
+          color: '#FFFFFF',
+        },
+
+        containedSecondary: {
+          borderColor: COLORS.secondary.main,
+          background: GRADIENTS.secondary,
+          color: '#FFFFFF',
+        },
+
+        outlined: {
+          borderWidth: '2px !important',
+        },
+      },
+    },
+
+    MuiDrawer: {
+      defaultProps: {
+        PaperProps: {
+          sx: (theme) => ({
+            background: theme.palette.background.default,
+          }),
+        },
+      },
+
+      styleOverrides: {
+        paper: {
+          borderRadius: 0,
+        },
+      },
+    },
+
+    MuiFilledInput: {
+      styleOverrides: {
+        root: {
+          borderTopLeftRadius: 12,
+          borderTopRightRadius: 12,
+
+          '& input:-webkit-autofill': {
+            WebkitTransitionDelay: '99999s',
+          },
+          '& input:-webkit-autofill:hover': {
+            WebkitTransitionDelay: '99999s',
+          },
+          '& input:-webkit-autofill:focus': {
+            WebkitTransitionDelay: '99999s',
+          },
+          '& input:-webkit-autofill:active': {
+            WebkitTransitionDelay: '99999s',
+          },
+        },
+      },
+    },
+
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
+
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderWidth: 2,
+          },
+
+          '& input:-webkit-autofill': {
+            WebkitTransitionDelay: '99999s',
+          },
+          '& input:-webkit-autofill:hover': {
+            WebkitTransitionDelay: '99999s',
+          },
+          '& input:-webkit-autofill:focus': {
+            WebkitTransitionDelay: '99999s',
+          },
+          '& input:-webkit-autofill:active': {
+            WebkitTransitionDelay: '99999s',
+          },
+        },
+      },
+    },
+
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& .MuiInputLabel-root.MuiInputLabel-shrink': {
+            fontWeight: 900,
+          },
+        },
+      },
+    },
+  },
 });

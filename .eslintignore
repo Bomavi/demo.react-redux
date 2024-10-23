@@ -1,1 +1,9 @@
-/src/react-app-env.d.ts
+.gitignore
+.prettierignore
+yarn.lock
+yarn-error.log
+package-lock.json
+dist
+coverage
+# node_modules
+**/*/vite-env.d.ts

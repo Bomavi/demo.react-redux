@@ -1,23 +1,27 @@
-/* npm imports: material-ui/core */
-import { createMuiTheme } from '@material-ui/core/styles';
+import { deepmerge } from '@mui/utils';
+import { createTheme } from '@mui/material/styles';
 
-/* local imports: common */
+import { COLORS } from 'src/utils/constants/colors';
+
 import { defaultTheme } from './default';
-import { themeWithOverrides } from './overrides';
 
-const lightTheme = createMuiTheme({
-	palette: {
-		type: 'light',
-		primary: {
-			main: '#26a69a',
-		},
-		secondary: {
-			main: '#ff5722',
-		},
-	},
-	gradients: defaultTheme.gradients,
-	sizes: defaultTheme.sizes,
-	overrides: themeWithOverrides.overrides,
+const theme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: COLORS.primary.main,
+    },
+    secondary: {
+      main: COLORS.secondary.main,
+    },
+    text: {
+      primary: '#4a4a4a',
+      secondary: '#20877e',
+    },
+    background: {
+      default: '#eee',
+    },
+  },
 });
 
-export { lightTheme };
+export const lightTheme = createTheme(deepmerge(defaultTheme, theme));
