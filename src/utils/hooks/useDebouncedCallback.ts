@@ -12,14 +12,14 @@ export type DebouncedReturnType<T> = [
   ReturnFunc<T>,
   () => void,
   () => T,
-  () => boolean
+  () => boolean,
 ];
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+/* eslint-disable-next-line "@typescript-eslint/no-unsafe-function-type" */
 export function useDebouncedCallback<T extends Function>(
   callback: T,
   wait: number,
-  options: Opts = {}
+  options: Opts = {},
 ): DebouncedReturnType<T> {
   const func = useRef<T>(callback);
   func.current = callback;
@@ -60,7 +60,7 @@ export function useDebouncedCallback<T extends Function>(
         ? Math.min(timeWaiting, maxWait.current - timeSinceLastInvoke)
         : timeWaiting;
     },
-    [maxing, wait]
+    [maxing, wait],
   );
 
   const shouldInvoke = useCallback(
@@ -78,7 +78,7 @@ export function useDebouncedCallback<T extends Function>(
         (!!maxing && timeSinceLastInvoke >= maxWait.current)
       );
     },
-    [maxing, wait]
+    [maxing, wait],
   );
 
   const trailingEdge = useCallback(
@@ -96,7 +96,7 @@ export function useDebouncedCallback<T extends Function>(
       return result.current;
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [trailing]
+    [trailing],
   );
 
   const timerExpired = useCallback((): T | void => {
@@ -120,7 +120,7 @@ export function useDebouncedCallback<T extends Function>(
       return leading ? invokeFunc(time) : result.current;
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [leading, timerExpired, wait]
+    [leading, timerExpired, wait],
   );
 
   const cancel = (): void => {
@@ -171,7 +171,7 @@ export function useDebouncedCallback<T extends Function>(
       return result.current;
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [leadingEdge, maxing, shouldInvoke, timerExpired, wait]
+    [leadingEdge, maxing, shouldInvoke, timerExpired, wait],
   );
 
   return [debounced, cancel, flush, pending];

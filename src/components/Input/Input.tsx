@@ -1,4 +1,4 @@
-import { TextFieldProps } from '@mui/material/TextField';
+import type { TextFieldProps } from '@mui/material/TextField';
 
 import ErrorTooltip from 'src/components/ErrorTooltip';
 

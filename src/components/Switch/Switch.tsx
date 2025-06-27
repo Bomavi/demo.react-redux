@@ -1,4 +1,4 @@
-import { SwitchProps } from '@mui/material/Switch';
+import type { SwitchProps } from '@mui/material/Switch';
 
 import { Android12Switch } from './styled';
 

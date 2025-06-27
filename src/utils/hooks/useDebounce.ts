@@ -17,7 +17,7 @@ type DebounceReturnType<T> = [T, () => void];
 export function useDebounce<T>(
   value: T,
   delay: number,
-  options: Opts<T> = {}
+  options: Opts<T> = {},
 ): DebounceReturnType<T> {
   const eq = options.equalityFn ? options.equalityFn : valueEquality;
 
@@ -28,7 +28,7 @@ export function useDebounce<T>(
       dispatch(value);
     }, []),
     delay,
-    options
+    options,
   );
 
   const previousValue = useRef(value);

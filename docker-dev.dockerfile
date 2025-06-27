@@ -1,7 +1,7 @@
-FROM node:lts-alpine
+FROM oven/bun:1
 WORKDIR /usr/src/app
-COPY ["package.json", "./"]
-COPY ["yarn.lock", "./"]
-RUN ["yarn", "--silent"]
+COPY package.json ./
+COPY bun.lock ./
+RUN bun install --frozen-lockfile
 COPY . .
 EXPOSE 3000

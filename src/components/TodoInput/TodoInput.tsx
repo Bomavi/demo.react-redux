@@ -1,4 +1,4 @@
-import { OutlinedInputProps } from '@mui/material/OutlinedInput';
+import type { OutlinedInputProps } from '@mui/material/OutlinedInput';
 
 import { StyledOutlinedInput } from './styled';
 

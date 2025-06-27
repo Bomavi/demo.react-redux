@@ -1,4 +1,4 @@
-import { OptionsObject } from 'notistack';
+import type { OptionsObject } from 'notistack';
 
 export const IS_DEV = import.meta.env.DEV;
 

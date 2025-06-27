@@ -27,7 +27,7 @@ interface Props {
 }
 
 function Task({ id, completed, text }: Props) {
-  const inputRef = useRef<HTMLInputElement>();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const { showSuccessSnackbar, showErrorSnackbar } = useSnackbar();
 
@@ -59,7 +59,7 @@ function Task({ id, completed, text }: Props) {
     resetField(NAME);
   };
 
-  const handleTaskSave = (data: FormData) => {
+  const handleTaskSave = (_data: FormData) => {
     setEditable(false);
     showSuccessSnackbar({ message: `Save task ${id}` });
   };

@@ -1,12 +1,5 @@
-import {
-  createContext,
-  Dispatch,
-  FC,
-  PropsWithChildren,
-  SetStateAction,
-  useContext,
-  useState,
-} from 'react';
+import { createContext, useContext, useState } from 'react';
+import type { Dispatch, FC, PropsWithChildren, SetStateAction } from 'react';
 
 import { IntlProvider } from 'react-intl';
 
@@ -19,7 +12,7 @@ export interface LocalizationContextResult {
   setLanguage: Dispatch<SetStateAction<LanguageState>>;
 }
 
-const LocalizationContext = createContext<LocalizationContextResult>({
+export const LocalizationContext = createContext<LocalizationContextResult>({
   language: defaultLanguage,
   setLanguage: () => {
     // void
@@ -41,16 +34,16 @@ const LocalizationProvider: FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
+export default LocalizationProvider;
+
 export const useLocalization = (): LocalizationContextResult => {
   const context = useContext(LocalizationContext);
 
   if (!context) {
     throw new Error(
-      'useLocalization must be used within a LocalizationProvider'
+      'useLocalization must be used within a LocalizationProvider',
     );
   }
 
   return context;
 };
-
-export default LocalizationProvider;

@@ -1,6 +1,8 @@
-import { LinkProps, Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 import Link from '@mui/material/Link';
+
+import type { LinkProps } from 'react-router-dom';
 
 function NavLink({ children, to }: LinkProps) {
   return (

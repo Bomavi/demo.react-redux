@@ -6,6 +6,7 @@ import Tab from '@mui/material/Tab';
 
 interface Props {
   tabIndex: number;
+  /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
   onChange: (e: React.ChangeEvent<{}>, v: number) => void;
 }
 

@@ -1,13 +1,5 @@
-import {
-  createContext,
-  Dispatch,
-  FC,
-  PropsWithChildren,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+import type { Dispatch, FC, PropsWithChildren, SetStateAction } from 'react';
 
 export type Theme = 'light' | 'dark' | 'auto';
 

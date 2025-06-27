@@ -1,4 +1,5 @@
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
+import type { MouseEvent } from 'react';
 
 import { Icon } from '@mdi/react';
 import {

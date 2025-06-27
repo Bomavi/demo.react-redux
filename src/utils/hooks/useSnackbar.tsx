@@ -1,4 +1,5 @@
-import { ReactNode, useCallback } from 'react';
+import { useCallback } from 'react';
+import type { ReactNode } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 import * as Notistack from 'notistack';
@@ -35,7 +36,7 @@ interface UseSnackbarResult {
 }
 
 export const useSnackbar = (
-  anchorOrigin = SNACKBAR.defaultOptions.anchorOrigin
+  anchorOrigin = SNACKBAR.defaultOptions.anchorOrigin,
 ): UseSnackbarResult => {
   const { enqueueSnackbar, closeSnackbar } = Notistack.useSnackbar();
 
@@ -57,7 +58,7 @@ export const useSnackbar = (
             id: message,
             defaultMessage: message,
           },
-          intlValues
+          intlValues,
         ),
         {
           ...SNACKBAR.defaultOptions,
@@ -95,10 +96,10 @@ export const useSnackbar = (
               }
             }
           },
-        }
+        },
       );
     },
-    [enqueueSnackbar, formatMessage, anchorOrigin, closeSnackbar]
+    [enqueueSnackbar, formatMessage, anchorOrigin, closeSnackbar],
   );
 
   const showSuccessSnackbar = useCallback(
@@ -117,7 +118,7 @@ export const useSnackbar = (
         intlValues,
       });
     },
-    [showIntlSnackbar]
+    [showIntlSnackbar],
   );
 
   const showErrorSnackbar = useCallback(
@@ -138,7 +139,7 @@ export const useSnackbar = (
         intlValues,
       });
     },
-    [showIntlSnackbar]
+    [showIntlSnackbar],
   );
 
   return {

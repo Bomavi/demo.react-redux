@@ -5,10 +5,7 @@ module.exports = {
   testEnvironment: 'jsdom',
   moduleDirectories: ['node_modules', 'src'],
   transformIgnorePatterns: ['node_modules/(?!.*)'],
-  modulePathIgnorePatterns: [
-    'build/',
-    '.ci',
-  ],
+  modulePathIgnorePatterns: ['build/', '.ci'],
   testTimeout: 5000,
   moduleNameMapper: {
     '^src/(.*)$': '<rootDir>/src/$1',

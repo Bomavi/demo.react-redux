@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 
 import Input from 'src/components/Input';
@@ -20,13 +20,13 @@ function InformationForm() {
   return (
     <form>
       <Grid container spacing={2}>
-        <Grid xs={6}>
+        <Grid size={{ xs: 6 }}>
           <Input fullWidth disabled={!isEditable} label="First Name" />
         </Grid>
-        <Grid xs={6}>
+        <Grid size={{ xs: 6 }}>
           <Input fullWidth disabled={!isEditable} label="Last Name" />
         </Grid>
-        <Grid xs={12}>
+        <Grid size={{ xs: 12 }}>
           <Input
             fullWidth
             multiline
@@ -35,7 +35,7 @@ function InformationForm() {
             label="BIO"
           />
         </Grid>
-        <Grid xs={12} display="flex" justifyContent="flex-end" mt={2}>
+        <Grid size={{ xs: 12 }} display="flex" justifyContent="flex-end" mt={2}>
           {!isEditable && (
             <Button variant="contained" size="large" onClick={handleEditStart}>
               Edit

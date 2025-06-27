@@ -1,10 +1,11 @@
 import { alpha, styled } from '@mui/material/styles';
-import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
+import Tooltip from '@mui/material/Tooltip';
+import type { TooltipProps } from '@mui/material/Tooltip';
 
 export const StyledErrorTooltip = styled(
   ({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} componentsProps={{ tooltip: { className } }} />
-  )
+  ),
 )(({ theme }) => {
   const errorBgColor = alpha(theme.palette.error.main, 0.8);
 

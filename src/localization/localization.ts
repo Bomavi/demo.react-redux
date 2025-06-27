@@ -1,7 +1,8 @@
 import { LOCALE } from './constants';
-import { TranslationsMap } from './typings';
 import en from './messages/en.json';
 import ua from './messages/ua.json';
+
+import type { TranslationsMap } from './typings';
 
 const defaultLanguage = LOCALE.en;
 

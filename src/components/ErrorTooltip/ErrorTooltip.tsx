@@ -1,6 +1,6 @@
 import cx from 'classnames';
 
-import { TooltipProps } from '@mui/material/Tooltip';
+import type { TooltipProps } from '@mui/material/Tooltip';
 
 import { StyledErrorTooltip } from './styled';
 

@@ -1,6 +1,6 @@
-import React from 'react';
+import { StrictMode } from 'react';
 
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 
 import LocalizationProvider from 'src/context/Localization';
@@ -10,12 +10,10 @@ import { NotistackProvider } from 'src/config/Notistack';
 
 import App from './App';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <ThemeProvider>
       <NotistackProvider>
         <Provider store={store}>
@@ -25,5 +23,5 @@ root.render(
         </Provider>
       </NotistackProvider>
     </ThemeProvider>
-  </React.StrictMode>
+  </StrictMode>,
 );

@@ -22,5 +22,5 @@ export const StyledMaterialDesignContent = styled(MaterialDesignContent)(
       background: GRADIENTS.secondary,
       borderColor: COLORS.secondary.main,
     },
-  })
+  }),
 );

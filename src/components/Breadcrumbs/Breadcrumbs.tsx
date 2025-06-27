@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import { useMatches } from 'react-router-dom';
 import { mdiMenuRight } from '@mdi/js';

@@ -1,4 +1,5 @@
-import { SyntheticEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import type { SyntheticEvent } from 'react';
 
 import { Link as RouterLink } from 'react-router-dom';
 

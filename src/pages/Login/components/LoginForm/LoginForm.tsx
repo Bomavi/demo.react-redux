@@ -21,6 +21,7 @@ function LoginForm() {
   const isLoginReady = !!username && !!password;
   const isRegistrationReady = isLoginReady && isPasswordCorrect;
 
+  /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
   const handleTabClick = (_e: React.ChangeEvent<{}>, value: number) => {
     setTabIndex(value);
   };
@@ -34,7 +35,7 @@ function LoginForm() {
   };
 
   const handleRepeatPasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setRepeatPassword(e.target.value);
   };

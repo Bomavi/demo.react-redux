@@ -1,4 +1,6 @@
-import axios, {
+import axios from 'axios';
+
+import type {
   AxiosDefaults,
   AxiosError,
   AxiosInstance,
@@ -32,7 +34,7 @@ export function apiGateway({
 
       return config;
     },
-    (error: AxiosError) => Promise.reject(error)
+    (error: AxiosError) => Promise.reject(error),
   );
 
   axios.interceptors.response.use(
@@ -40,14 +42,14 @@ export function apiGateway({
     (error) => {
       // NOTE: handle action on faild response
       return Promise.reject(error);
-    }
+    },
   );
 
   return axiosInstance;
 }
 
 export function axiosBaseQuery(
-  { baseUrl, withCredentials } = { baseUrl: '', withCredentials: true }
+  { baseUrl, withCredentials } = { baseUrl: '', withCredentials: true },
 ) {
   return async ({
     url,

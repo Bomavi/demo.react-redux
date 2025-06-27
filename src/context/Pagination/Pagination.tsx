@@ -1,12 +1,5 @@
-import {
-  createContext,
-  Dispatch,
-  FC,
-  PropsWithChildren,
-  SetStateAction,
-  useContext,
-  useState,
-} from 'react';
+import { createContext, useContext, useState } from 'react';
+import type { Dispatch, FC, PropsWithChildren, SetStateAction } from 'react';
 
 export interface PaginationState {
   page: number;

@@ -7,7 +7,8 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Tooltip from '@mui/material/Tooltip';
 
-import Input, { InputProps } from 'src/components/Input';
+import Input from 'src/components/Input';
+import type { InputProps } from 'src/components/Input';
 
 function PasswordInput(props: InputProps) {
   const [showPassword, setShowPassword] = useState(false);
@@ -21,7 +22,7 @@ function PasswordInput(props: InputProps) {
   };
 
   const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault();
   };
