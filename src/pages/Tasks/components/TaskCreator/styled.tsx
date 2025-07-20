@@ -8,7 +8,7 @@ export const StyledOutlinedInput = styled(OutlinedInput)(({ theme }) => {
     &.Mui-focused .MuiOutlinedInput-notchedOutline {
       background-color: ${alpha(theme.palette.primary.main, 0.06)};
     }
-  
+
     & .MuiOutlinedInput-notchedOutline {
       border-color: ${theme.palette.text.primary};
     },
